@@ -1,5 +1,9 @@
 import { wanim } from "./lib/wanim.js";
-import { WanimScene } from "./lib/scene.js";
-
-export { WanimScene };
 export default wanim;
+
+export * from "./lib/shapes/index.js";
+export * from "./lib/animations/index.js";
+
+export * from "./lib/scene.js";
+export * from "./lib/wobject.js";
+export * from "./lib/vwobject.js";
