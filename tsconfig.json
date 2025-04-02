@@ -1,6 +1,13 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compileOnSave": false,
-  "files": [],
-  "references": []
+    "extends": "./tsconfig.base.json",
+    "compileOnSave": false,
+    "files": [],
+    "references": [
+        {
+            "path": "./packages/examples"
+        },
+        {
+            "path": "./packages/wanim"
+        }
+    ]
 }
