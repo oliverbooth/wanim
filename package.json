@@ -54,6 +54,7 @@
         "packages/*"
     ],
     "dependencies": {
+        "@types/mathjax": "^0.0.40",
         "motion": "^12.6.3",
         "react": "19.0.0",
         "react-dom": "19.0.0",
