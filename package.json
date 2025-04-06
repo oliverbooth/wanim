@@ -20,6 +20,7 @@
         "@swc/core": "~1.5.7",
         "@swc/helpers": "~0.5.11",
         "@swc/jest": "~0.2.36",
+        "@types/clone": "^2.1.4",
         "@types/jest": "^29.5.12",
         "@types/node": "^20.0.0",
         "@types/react": "19.0.0",
@@ -54,6 +55,7 @@
         "packages/*"
     ],
     "dependencies": {
+        "clone": "^2.1.2",
         "motion": "^12.6.3",
         "react": "19.0.0",
         "react-dom": "19.0.0",

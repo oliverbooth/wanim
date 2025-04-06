@@ -1,13 +1,18 @@
-import { WanimScene } from "./scene.js";
+import { WanimScene } from "./wanimscene.js";
 
 type Container = string | HTMLElement | null;
 
+/**
+ * Starts running the specified {@link WanimScene} in the specified container.
+ *
+ * @param SceneConstructor
+ * @param container An ID or an HTMLElement. If a nullish value is passed, this creates a fixed fullscreen container.
+ * @returns An instance of controls to manage the animation.
+ */
 export function wanim<T extends WanimScene>(
     SceneConstructor: new () => T,
     container?: Container
 ) {
-    console.log("wanim called on", SceneConstructor, container);
-
     if (typeof container === "string") {
         container = document.querySelector(container) as HTMLElement;
     }
@@ -29,19 +34,14 @@ export function wanim<T extends WanimScene>(
     container.appendChild(svgContainer);
 
     const sceneInstance = new SceneConstructor();
-    sceneInstance.construct();
+    sceneInstance.container = svgContainer;
 
-    for (const vwObject of sceneInstance.objects) {
-        svgContainer.appendChild(vwObject.element);
-        vwObject.element.style.pointerEvents = "all";
-    }
-
-    const playbackControls = sceneInstance.animate();
+    // this runs as a forgettable promise for now
+    sceneInstance.run();
 
     return {
         destroy() {
-            playbackControls.cancel();
-            svgContainer.remove();
+            container.remove();
         },
     };
 }

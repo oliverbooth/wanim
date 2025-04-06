@@ -1,0 +1,71 @@
+---
+title: Quickstart
+---
+
+import { Tabs, TabItem, Code, Aside } from "@astrojs/starlight/components";
+
+This guide will lead you through displaying simple scenes using wanim, a web engine for mathematical animations, inspired by [manim](https://www.manim.community/).
+
+We will install the library and create a `WanimScene`, which acts as a container for running a scripted animation. To this we will add a circle, which should animate its entry. Then we will extend this animation by morphing the circle into a square. This will give you an introduction to wanim's animation engine. [...]
+
+## Installation
+
+<Aside type="danger">This is pre-written for the future - we don't actually have anything published yet.</Aside>
+
+You can install wanim in two ways:
+
+### Package Manager
+
+Via your favorite package manager:
+
+<Tabs syncKey="packagemanager">
+    <TabItem label="npm">
+        <Code code="npm install wanim" lang="console" />
+    </TabItem>
+    <TabItem label="yarn">
+        <Code code="yarn add wanim" lang="console" />
+    </TabItem>
+</Tabs>
+
+You can then import the library in your JavaScript code:
+
+```js
+import { wanim, WanimScene } from "wanim";
+```
+
+### `<script>` Tag
+
+You can also import wanim directly into the web page using a `<script>` tag. If you are using vanilla JavaScript without a build system, this approach is probably for you.
+
+You can use the modern `import` syntax:
+
+```html
+<script type="module">
+    import { wanim, WanimScene } from "https://cdn.jsdelivr.net/npm/wanim@latest/+esm";
+</script>
+```
+
+Or you can add `Wanim` as a global variable using the legacy include:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/wanim@latest/dist/wanim.js"></script>
+<script>
+    const { wanim, WanimScene } = Wanim;
+</script>
+```
+
+## Create a circle
+
+In your JavaScript code add the following segment, which creates a pink circle in a fullscreen scene.
+
+```ts
+class CreateCircle extends WanimScene {
+    construct() {
+        const circle = this.add(new Circle());
+        circle.setFill("pink", 0.5);
+        this.play(Create(circle));
+    }
+}
+
+wanim(CreateCircle);
+```

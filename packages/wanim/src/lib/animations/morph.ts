@@ -1,0 +1,57 @@
+import { animate, interpolate } from "motion";
+import { WPathObject } from "../wpathobject.js";
+import { EASE_IN_OUT_CUBIC } from "../easings.js";
+import { WAnimation } from "./types.js";
+
+/**
+ * Creates an animation which morphs a {@link WPathObject} into another.
+ * Note that this actually mutates {@link a} and then reveals {@link b} and hides {@link a} once done.
+ *
+ * @param obj The object to perform the animation on.
+ */
+export function Morph(a: WPathObject, b: WPathObject): WAnimation {
+    return async () => {
+        const aPath = a.path.clone();
+        const bPath = b.path.clone();
+
+        const res = Math.max(16, aPath.segments.length, bPath.segments.length);
+        aPath.refine(res);
+        bPath.refine(res);
+
+        const makeInterpolator = (attr: string, def: string) =>
+            interpolate(
+                [0, 1],
+                [
+                    a.element.getAttribute(attr) || def,
+                    b.element.getAttribute(attr) || def,
+                ]
+            );
+
+        const interpolaters = {
+            fill: makeInterpolator("fill", "#00000000"),
+            "fill-opacity": makeInterpolator("fill-opacity", "1"),
+            stroke: makeInterpolator("stroke", "#00000000"),
+        };
+
+        await animate(0, 1, {
+            onUpdate: (t) => {
+                // TODO: this only really looks good if the points are already close to each other.
+                // maybe we could otherwise offset the path so points are close? naively that would be O(n^2).
+                a.path = aPath.interpolate(bPath, t);
+                a.renderPath();
+
+                for (const [attr, interpolater] of Object.entries(
+                    interpolaters
+                )) {
+                    a.element.setAttribute(attr, interpolater(t));
+                }
+            },
+            onComplete: () => {
+                a.hide();
+                b.show();
+            },
+            duration: 0.5,
+            ease: EASE_IN_OUT_CUBIC,
+        });
+    };
+}
