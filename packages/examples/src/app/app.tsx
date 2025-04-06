@@ -1,24 +1,40 @@
 import { useEffect } from "react";
-import wanim, { Circle, Create, WanimScene } from "wanim";
+import {
+    wanim,
+    Circle,
+    Create,
+    WanimScene,
+    Square,
+    Morph,
+    Uncreate,
+} from "wanim";
 
 export function App() {
     useEffect(() => {
-        // class CreateCircle(Scene):
-        //     def construct(self):
-        //         circle = Circle()  # create a circle
-        //         circle.set_fill(PINK, opacity=0.5)  # set the color and transparency
-        //         self.play(Create(circle))  # show the circle on screen
+        const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-        class CreateCircle extends WanimScene {
-            construct() {
-                const circle = this.add(new Circle());
-                circle.setFill("pink", 0.5);
+        class AnimationTest extends WanimScene {
+            async run() {
+                const circle1 = this.add(new Circle());
+                circle1.setFill("#ff0000", 0.5);
 
-                this.play(Create(circle));
+                const square = this.add(new Square(0, 0, 20));
+                square.setFill("#00ff00");
+
+                const circle2 = this.add(new Circle(0, 0, 15));
+                circle2.setFill("#0000ff", 0.75);
+
+                await this.play(Create(circle1));
+                await sleep(500);
+                await this.play(Morph(circle1, square));
+                await sleep(500);
+                await this.play(Morph(square, circle2));
+                await sleep(500);
+                await this.play(Uncreate(circle2));
             }
         }
 
-        const w = wanim(CreateCircle);
+        const w = wanim(AnimationTest);
 
         return () => {
             w.destroy();
