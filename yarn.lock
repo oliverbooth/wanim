@@ -90,6 +90,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@astrojs/react@npm:^4.2.3":
+  version: 4.2.3
+  resolution: "@astrojs/react@npm:4.2.3"
+  dependencies:
+    "@vitejs/plugin-react": "npm:^4.3.4"
+    ultrahtml: "npm:^1.5.3"
+    vite: "npm:^6.2.4"
+  peerDependencies:
+    "@types/react": ^17.0.50 || ^18.0.21 || ^19.0.0
+    "@types/react-dom": ^17.0.17 || ^18.0.6 || ^19.0.0
+    react: ^17.0.2 || ^18.0.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/2435ddd84b65e6728f116c26cbe923f70062d5b2dcefc5b72c7b03632d5baf922889ca06af0f0e6e65d292a272dabde7a1fdfc047f9e042ef68045f058998637
+  languageName: node
+  linkType: hard
+
 "@astrojs/sitemap@npm:^3.2.1":
   version: 3.3.0
   resolution: "@astrojs/sitemap@npm:3.3.0"
@@ -133,6 +149,20 @@ __metadata:
   peerDependencies:
     astro: ^5.1.5
   checksum: 10c0/641dd67dc188e63d51a8a7c00243a9b4834b3bebccaad47cbb8a5cc5108a4292f4d786111d22b98d3b04a6d4baae019d018b6339caca734ed6f958faeae74492
+  languageName: node
+  linkType: hard
+
+"@astrojs/tailwind@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@astrojs/tailwind@npm:6.0.2"
+  dependencies:
+    autoprefixer: "npm:^10.4.21"
+    postcss: "npm:^8.5.3"
+    postcss-load-config: "npm:^4.0.2"
+  peerDependencies:
+    astro: ^3.0.0 || ^4.0.0 || ^5.0.0
+    tailwindcss: ^3.0.24
+  checksum: 10c0/6dca55a6f89db3ebd4b4de10ba437568000f7a04e568e746b6aa00c1b0db8219a6b2b1f5999aa2dd435aae71028401f57e5c087b08a22e007b5e0d32ee7c128d
   languageName: node
   linkType: hard
 
@@ -2743,6 +2773,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"autoprefixer@npm:^10.4.21":
+  version: 10.4.21
+  resolution: "autoprefixer@npm:10.4.21"
+  dependencies:
+    browserslist: "npm:^4.24.4"
+    caniuse-lite: "npm:^1.0.30001702"
+    fraction.js: "npm:^4.3.7"
+    normalize-range: "npm:^0.1.2"
+    picocolors: "npm:^1.1.1"
+    postcss-value-parser: "npm:^4.2.0"
+  peerDependencies:
+    postcss: ^8.1.0
+  bin:
+    autoprefixer: bin/autoprefixer
+  checksum: 10c0/de5b71d26d0baff4bbfb3d59f7cf7114a6030c9eeb66167acf49a32c5b61c68e308f1e0f869d92334436a221035d08b51cd1b2f2c4689b8d955149423c16d4d4
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^4.1.0":
   version: 4.1.0
   resolution: "axobject-query@npm:4.1.0"
@@ -3000,7 +3048,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.24.0":
+"browserslist@npm:^4.24.0, browserslist@npm:^4.24.4":
   version: 4.24.4
   resolution: "browserslist@npm:4.24.4"
   dependencies:
@@ -3097,7 +3145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001688":
+"caniuse-lite@npm:^1.0.30001688, caniuse-lite@npm:^1.0.30001702":
   version: 1.0.30001712
   resolution: "caniuse-lite@npm:1.0.30001712"
   checksum: 10c0/b3df8bdcc3335969380c2e47acb36c89bfc7f8fb4ef7ee2a5380e30ba46aa69e9d411654bc29894a06c201a1d60d490ab9b92787f3b66d7a7a38d71360e68215
@@ -3569,12 +3617,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "docs@workspace:packages/docs"
   dependencies:
+    "@astrojs/react": "npm:^4.2.3"
     "@astrojs/starlight": "npm:^0.32.5"
+    "@astrojs/tailwind": "npm:^6.0.2"
+    "@tailwindcss/vite": "npm:^4.1.3"
     astro: "npm:^5.5.3"
+    clsx: "npm:^2.1.1"
+    react-icons: "npm:^5.5.0"
     sharp: "npm:^0.32.5"
     starlight-typedoc: "npm:^0.21.0"
+    tailwindcss: "npm:^4.1.3"
     typedoc: "npm:^0.28.1"
     typedoc-plugin-markdown: "npm:^4.6.1"
+    wanim: "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -4316,6 +4371,13 @@ __metadata:
     cross-spawn: "npm:^7.0.6"
     signal-exit: "npm:^4.0.1"
   checksum: 10c0/8986e4af2430896e65bc2788d6679067294d6aee9545daefc84923a0a4b399ad9c7a3ea7bd8c0b2b80fdf4a92de4c69df3f628233ff3224260e9c1541a9e9ed3
+  languageName: node
+  linkType: hard
+
+"fraction.js@npm:^4.3.7":
+  version: 4.3.7
+  resolution: "fraction.js@npm:4.3.7"
+  checksum: 10c0/df291391beea9ab4c263487ffd9d17fed162dbb736982dee1379b2a8cc94e4e24e46ed508c6d278aded9080ba51872f1bc5f3a5fd8d7c74e5f105b508ac28711
   languageName: node
   linkType: hard
 
@@ -5946,6 +6008,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lilconfig@npm:^3.0.0":
+  version: 3.1.3
+  resolution: "lilconfig@npm:3.1.3"
+  checksum: 10c0/f5604e7240c5c275743561442fbc5abf2a84ad94da0f5adc71d25e31fa8483048de3dcedcb7a44112a942fed305fd75841cdf6c9681c7f640c63f1049e9a5dcc
+  languageName: node
+  linkType: hard
+
 "lines-and-columns@npm:^1.1.6":
   version: 1.2.4
   resolution: "lines-and-columns@npm:1.2.4"
@@ -7173,6 +7242,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"normalize-range@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "normalize-range@npm:0.1.2"
+  checksum: 10c0/bf39b73a63e0a42ad1a48c2bd1bda5a07ede64a7e2567307a407674e595bcff0fa0d57e8e5f1e7fa5e91000797c7615e13613227aaaa4d6d6e87f5bd5cc95de6
+  languageName: node
+  linkType: hard
+
 "npm-run-path@npm:^4.0.1":
   version: 4.0.1
   resolution: "npm-run-path@npm:4.0.1"
@@ -7514,6 +7590,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-load-config@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "postcss-load-config@npm:4.0.2"
+  dependencies:
+    lilconfig: "npm:^3.0.0"
+    yaml: "npm:^2.3.4"
+  peerDependencies:
+    postcss: ">=8.0.9"
+    ts-node: ">=9.0.0"
+  peerDependenciesMeta:
+    postcss:
+      optional: true
+    ts-node:
+      optional: true
+  checksum: 10c0/3d7939acb3570b0e4b4740e483d6e555a3e2de815219cb8a3c8fc03f575a6bde667443aa93369c0be390af845cb84471bf623e24af833260de3a105b78d42519
+  languageName: node
+  linkType: hard
+
 "postcss-nested@npm:^6.0.1":
   version: 6.2.0
   resolution: "postcss-nested@npm:6.2.0"
@@ -7532,6 +7626,13 @@ __metadata:
     cssesc: "npm:^3.0.0"
     util-deprecate: "npm:^1.0.2"
   checksum: 10c0/523196a6bd8cf660bdf537ad95abd79e546d54180f9afb165a4ab3e651ac705d0f8b8ce6b3164fb9e3279ce482c5f751a69eb2d3a1e8eb0fd5e82294fb3ef13e
+  languageName: node
+  linkType: hard
+
+"postcss-value-parser@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "postcss-value-parser@npm:4.2.0"
+  checksum: 10c0/f4142a4f56565f77c1831168e04e3effd9ffcc5aebaf0f538eee4b2d465adfd4b85a44257bb48418202a63806a7da7fe9f56c330aebb3cac898e46b4cbf49161
   languageName: node
   linkType: hard
 
@@ -7721,6 +7822,15 @@ __metadata:
   peerDependencies:
     react: ^19.1.0
   checksum: 10c0/3e26e89bb6c67c9a6aa86cb888c7a7f8258f2e347a6d2a15299c17eb16e04c19194e3452bc3255bd34000a61e45e2cb51e46292392340432f133e5a5d2dfb5fc
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "react-icons@npm:5.5.0"
+  peerDependencies:
+    react: "*"
+  checksum: 10c0/a24309bfc993c19cbcbfc928157e53a137851822779977b9588f6dd41ffc4d11ebc98b447f4039b0d309a858f0a42980f6bfb4477fb19f9f2d1bc2e190fcf79c
   languageName: node
   linkType: hard
 
@@ -9218,7 +9328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ultrahtml@npm:^1.6.0":
+"ultrahtml@npm:^1.5.3, ultrahtml@npm:^1.6.0":
   version: 1.6.0
   resolution: "ultrahtml@npm:1.6.0"
   checksum: 10c0/1140be819fdde198d83ad61b0186cb1fdb9d3a5d77ff416a752ae735089851a182d2100a1654f6b70dbb4f67881fcac1afba9323e261c8a95846a63f668b4c2a
@@ -9598,7 +9708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wanim@workspace:packages/wanim":
+"wanim@workspace:^, wanim@workspace:packages/wanim":
   version: 0.0.0-use.local
   resolution: "wanim@workspace:packages/wanim"
   dependencies:
@@ -9745,7 +9855,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.7.1":
+"yaml@npm:^2.3.4, yaml@npm:^2.7.1":
   version: 2.7.1
   resolution: "yaml@npm:2.7.1"
   bin:

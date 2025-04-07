@@ -3,6 +3,7 @@ title: Quickstart
 ---
 
 import { Tabs, TabItem, Code, Aside } from "@astrojs/starlight/components";
+import { CreateCircleExample } from "../../../examples/create-circle.jsx";
 
 This guide will lead you through displaying simple scenes using wanim, a web engine for mathematical animations, inspired by [manim](https://www.manim.community/).
 
@@ -60,12 +61,14 @@ In your JavaScript code add the following segment, which creates a pink circle i
 
 ```ts
 class CreateCircle extends WanimScene {
-    construct() {
-        const circle = this.add(new Circle());
+    async run() {
+        const circle = this.add(new Circle(0, 0, 40));
         circle.setFill("pink", 0.5);
-        this.play(Create(circle));
+        await this.play(Create(circle));
     }
 }
 
 wanim(CreateCircle);
 ```
+
+<CreateCircleExample client:load />

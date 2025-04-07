@@ -10,10 +10,14 @@ type Container = string | HTMLElement | null;
  * @returns An instance of controls to manage the animation.
  */
 export function wanim<T extends WanimScene>(SceneConstructor: new () => T, container?: Container) {
+    let generateContainer = false;
+
     if (typeof container === "string") {
         container = document.querySelector(container) as HTMLElement;
     }
     if (!container) {
+        generateContainer = true;
+
         container = document.createElement("div");
         container.style.cssText =
             "position: fixed; left: 0; top: 0; width: 100dvw; height: 100dvh; pointer-events: none";
@@ -35,7 +39,7 @@ export function wanim<T extends WanimScene>(SceneConstructor: new () => T, conta
 
     return {
         destroy() {
-            container.remove();
+            (generateContainer ? container : svgContainer).remove();
         },
     };
 }

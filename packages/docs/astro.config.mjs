@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
 import starlightTypeDoc, { typeDocSidebarGroup } from "starlight-typedoc";
 
 // https://astro.build/config
@@ -12,9 +14,12 @@ export default defineConfig({
             redirectToDefaultLocale: true,
         },
     },
+
     integrations: [
+        react(),
         starlight({
             title: "wanim",
+            customCss: ["./src/styles/global.css"],
             social: {
                 github: "https://github.com/oliverbooth/wanim",
             },
@@ -38,4 +43,8 @@ export default defineConfig({
             ],
         }),
     ],
+
+    vite: {
+        plugins: [tailwindcss()],
+    },
 });
