@@ -29,6 +29,9 @@ jobs:
               run: yarn install
 
             - name: Build project
+              run: yarn workspace wanim build
+
+            - name: Build documentation
               run: yarn workspace docs build
 
             - name: Deploy to GitHub Pages
