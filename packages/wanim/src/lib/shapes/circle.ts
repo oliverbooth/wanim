@@ -22,12 +22,7 @@ export class Circle extends WPathObject {
     }
 }
 
-function generateCirclePath(
-    cx: number,
-    cy: number,
-    r: number,
-    segments: number
-): WPath {
+function generateCirclePath(cx: number, cy: number, r: number, segments: number): WPath {
     const angleStep = (2 * Math.PI) / segments;
     const k = (4 / 3) * Math.tan(angleStep / 4);
 

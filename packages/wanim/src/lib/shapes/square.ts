@@ -30,9 +30,7 @@ function generateSquarePath(cx: number, cy: number, h: number): WPath {
         [1, 1],
     ];
 
-    const points = offsets.map(
-        ([dx, dy]) => [cx + dx * h, cy + dy * h] as Point
-    );
+    const points = offsets.map(([dx, dy]) => [cx + dx * h, cy + dy * h] as Point);
     const segments: [Point, Point, Point, Point][] = points.map((point, i) => {
         const nextPoint = points[(i + 1) % points.length];
         return [point, point, nextPoint, nextPoint];

@@ -5,9 +5,7 @@ import { WAnimation } from "./types.js";
 
 /**
  * Creates an animation which morphs a {@link WPathObject} into another.
- * Note that this actually mutates {@link a} and then reveals {@link b} and hides {@link a} once done.
- *
- * @param obj The object to perform the animation on.
+ * Note that this actually mutates {a and then reveals b and hides a once done.
  */
 export function Morph(a: WPathObject, b: WPathObject): WAnimation {
     return async () => {
@@ -19,13 +17,7 @@ export function Morph(a: WPathObject, b: WPathObject): WAnimation {
         bPath.refine(res);
 
         const makeInterpolator = (attr: string, def: string) =>
-            interpolate(
-                [0, 1],
-                [
-                    a.element.getAttribute(attr) || def,
-                    b.element.getAttribute(attr) || def,
-                ]
-            );
+            interpolate([0, 1], [a.element.getAttribute(attr) || def, b.element.getAttribute(attr) || def]);
 
         const interpolaters = {
             fill: makeInterpolator("fill", "#00000000"),
@@ -40,9 +32,7 @@ export function Morph(a: WPathObject, b: WPathObject): WAnimation {
                 a.path = aPath.interpolate(bPath, t);
                 a.renderPath();
 
-                for (const [attr, interpolater] of Object.entries(
-                    interpolaters
-                )) {
+                for (const [attr, interpolater] of Object.entries(interpolaters)) {
                     a.element.setAttribute(attr, interpolater(t));
                 }
             },

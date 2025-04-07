@@ -9,10 +9,7 @@ type Container = string | HTMLElement | null;
  * @param container An ID or an HTMLElement. If a nullish value is passed, this creates a fixed fullscreen container.
  * @returns An instance of controls to manage the animation.
  */
-export function wanim<T extends WanimScene>(
-    SceneConstructor: new () => T,
-    container?: Container
-) {
+export function wanim<T extends WanimScene>(SceneConstructor: new () => T, container?: Container) {
     if (typeof container === "string") {
         container = document.querySelector(container) as HTMLElement;
     }
@@ -24,10 +21,7 @@ export function wanim<T extends WanimScene>(
         document.body.appendChild(container);
     }
 
-    const svgContainer = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "svg"
-    ) as SVGElement;
+    const svgContainer = document.createElementNS("http://www.w3.org/2000/svg", "svg") as SVGElement;
     svgContainer.style.cssText = "width: 100%; height: 100%";
     svgContainer.setAttribute("viewBox", "-100 -100 200 200");
 

@@ -1,13 +1,4 @@
 {
     "files": [],
-    "include": [],
-    "references": [
-        {
-            "path": "../wanim"
-        },
-        {
-            "path": "./tsconfig.app.json"
-        }
-    ],
-    "extends": "../../tsconfig.base.json"
+    "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

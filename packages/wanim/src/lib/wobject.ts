@@ -1,9 +1,7 @@
 /**
  * The base class for objects used in wanim's animations.
  */
-export abstract class WObject<
-    T extends SVGGeometryElement = SVGGeometryElement
-> {
+export abstract class WObject<T extends SVGGeometryElement = SVGGeometryElement> {
     /**
      * The DOM element that represents the object's visual.
      */
@@ -37,7 +35,6 @@ export abstract class WObject<
     setFill(color: string, opacity?: number) {
         this.element.setAttribute("fill", color);
 
-        if (typeof opacity !== "undefined")
-            this.element.setAttribute("fill-opacity", opacity.toString());
+        if (typeof opacity !== "undefined") this.element.setAttribute("fill-opacity", opacity.toString());
     }
 }

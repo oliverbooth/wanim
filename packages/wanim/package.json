@@ -6,6 +6,9 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsc --project tsconfig.lib.json"
+    },
     "exports": {
         "./package.json": "./package.json",
         ".": {
@@ -18,5 +21,8 @@
     "dependencies": {
         "motion": "^12.6.3",
         "tslib": "^2.3.0"
+    },
+    "devDependencies": {
+        "typescript": "^5.8.3"
     }
 }

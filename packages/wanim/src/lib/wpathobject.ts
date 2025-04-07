@@ -14,10 +14,7 @@ export class WPathObject extends WObject<SVGPathElement> {
         super(x, y);
 
         this.path = new WPath();
-        this.element = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "path"
-        ) as SVGPathElement;
+        this.element = document.createElementNS("http://www.w3.org/2000/svg", "path") as SVGPathElement;
 
         this.element.setAttribute("stroke", "white");
         this.element.setAttribute("stroke-width", "1");

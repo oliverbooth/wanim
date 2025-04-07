@@ -32,9 +32,7 @@ export class WPath {
      * Returns a new path that is a linear interpolation of the path against the specified path by t.
      */
     interpolate(other: WPath, t: number): WPath {
-        const segments = this.segments.map((segment, i) =>
-            segment.interpolate(other.segments[i], t)
-        );
+        const segments = this.segments.map((segment, i) => segment.interpolate(other.segments[i], t));
 
         return new WPath(segments.map((segment) => segment.points));
     }
@@ -43,10 +41,7 @@ export class WPath {
      * Returns an (approximation) of the total path length.
      */
     getLength(): number {
-        return this.segments.reduce(
-            (sum, segment) => sum + segment.getLength(),
-            0
-        );
+        return this.segments.reduce((sum, segment) => sum + segment.getLength(), 0);
     }
 
     /**
@@ -91,16 +86,12 @@ export class WPath {
         const p = 3;
         const fixedSegments = this.segments.map(
             (segment) =>
-                segment.points.map((point) =>
-                    point.map((coord) => coord.toFixed(p)).join(",")
-                ) as Quadruple<string>
+                segment.points.map((point) => point.map((coord) => coord.toFixed(p)).join(",")) as Quadruple<string>
         );
 
         return (
             `M ${fixedSegments[0][0]} ` +
-            fixedSegments
-                .map((segment) => `C ${segment[1]} ${segment[2]} ${segment[3]}`)
-                .join(" ")
+            fixedSegments.map((segment) => `C ${segment[1]} ${segment[2]} ${segment[3]}`).join(" ")
         );
     }
 
@@ -116,9 +107,7 @@ export class WPath {
         }
 
         if (count < this.segments.length) {
-            throw new Error(
-                "Cannot refine to a count less than the number of segments (yet)."
-            );
+            throw new Error("Cannot refine to a count less than the number of segments (yet).");
         }
 
         let index = 0;
@@ -156,9 +145,7 @@ export class WPathSegment {
      */
     interpolate(other: WPathSegment, t: number): WPathSegment {
         return new WPathSegment(
-            this.points.map((point, i) =>
-                lerpPoints(point, other.points[i], t)
-            ) as CubicBezierPoints
+            this.points.map((point, i) => lerpPoints(point, other.points[i], t)) as CubicBezierPoints
         );
     }
 
@@ -179,10 +166,7 @@ export class WPathSegment {
 
         const p0123 = lerpPoints(p012, p123, t);
 
-        return [
-            new WPathSegment([p0, p01, p012, p0123]),
-            new WPathSegment([p0123, p123, p23, p3]),
-        ];
+        return [new WPathSegment([p0, p01, p012, p0123]), new WPathSegment([p0123, p123, p23, p3])];
     }
 }
 
@@ -212,9 +196,7 @@ function bezierDerivative(curve: CubicBezierPoints, t: number): Point {
 function bezierLengthGaussQuad(curve: CubicBezierPoints): number {
     // Weights and evaluation points for 5-point Gauss–Legendre
     const tValues = [0.04691008, 0.23076534, 0.5, 0.76923466, 0.95308992];
-    const cValues = [
-        0.11846344, 0.23931434, 0.28444444, 0.23931434, 0.11846344,
-    ];
+    const cValues = [0.11846344, 0.23931434, 0.28444444, 0.23931434, 0.11846344];
 
     let sum = 0;
     for (let i = 0; i < tValues.length; i++) {
