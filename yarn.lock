@@ -3945,7 +3945,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.21.0":
+"eslint@npm:^9.21.0, eslint@npm:^9.24.0":
   version: 9.24.0
   resolution: "eslint@npm:9.24.0"
   dependencies:
@@ -8370,6 +8370,7 @@ __metadata:
     "@types/react-dom": "npm:19.0.0"
     "@vitejs/plugin-react": "npm:^4.2.0"
     clone: "npm:^2.1.2"
+    eslint: "npm:^9.24.0"
     jest: "npm:^29.7.0"
     jest-environment-node: "npm:^29.7.0"
     motion: "npm:^12.6.3"

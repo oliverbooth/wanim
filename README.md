@@ -1,12 +1,19 @@
-# wanim
+<p align="center">
+    <img src=".github/logo.svg" height="128" />
+</p>
+<h1 align="center">wanim</h1>
+<p align="center">
+    A web-first library for creating mathematical animations.<br/>
+    <a href="https://wanim.booth.dev">
+        <b>Check out the docs »</b>
+    </a>
+</p>
 
-> A web-first library for creating mathematical animations.
-
-This is an monorepo using [yarn workspaces](), containing the core, examples and docs of **wanim**.
+This is an monorepo using [yarn workspaces](https://yarnpkg.com/features/workspaces), containing the core, examples and docs of **wanim**.
 
 ## Installation
 
-TODO: Link to docs
+Check out the [documentation](https://wanim.booth.dev/tutorials/quickstart/) for a quickstart guide!
 
 ## Developing
 
