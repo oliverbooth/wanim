@@ -19,10 +19,11 @@
         }
     },
     "dependencies": {
-        "motion": "^12.6.3",
+        "svg-path-parser": "^1.1.0",
         "tslib": "^2.3.0"
     },
     "devDependencies": {
+        "@types/svg-path-parser": "^1.1.6",
         "typescript": "^5.8.3"
     }
 }

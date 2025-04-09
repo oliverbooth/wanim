@@ -1,19 +1,11 @@
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
-/**
- * Represents a square object.
- */
-export class Square extends WPathObject {
-    public h: number;
-
-    /**
-     * Creates a new square instance with specified half-width.
-     */
-    constructor(x = 0, y = 0, h = 1) {
+export class Star extends WPathObject {
+    constructor(x = 0, y = 0, n = 1) {
         super(x, y);
 
-        this.h = h;
+        let h = -1;
 
         this.path = WPath.fromPoints([
             [h, -h],

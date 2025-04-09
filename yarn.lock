@@ -2349,6 +2349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/svg-path-parser@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@types/svg-path-parser@npm:1.1.6"
+  checksum: 10c0/128ea1028229d5bfc88f2a821df1dd5ac032501ca9d3f771ddeea8566750d4dd43576c3d6389b45b50d87bcaf58f6bcf327830233e46cf1b069d1b4c54a56160
+  languageName: node
+  linkType: hard
+
 "@types/unist@npm:*, @types/unist@npm:^3.0.0":
   version: 3.0.3
   resolution: "@types/unist@npm:3.0.3"
@@ -4378,28 +4385,6 @@ __metadata:
   version: 4.3.7
   resolution: "fraction.js@npm:4.3.7"
   checksum: 10c0/df291391beea9ab4c263487ffd9d17fed162dbb736982dee1379b2a8cc94e4e24e46ed508c6d278aded9080ba51872f1bc5f3a5fd8d7c74e5f105b508ac28711
-  languageName: node
-  linkType: hard
-
-"framer-motion@npm:^12.6.3":
-  version: 12.6.3
-  resolution: "framer-motion@npm:12.6.3"
-  dependencies:
-    motion-dom: "npm:^12.6.3"
-    motion-utils: "npm:^12.6.3"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    "@emotion/is-prop-valid": "*"
-    react: ^18.0.0 || ^19.0.0
-    react-dom: ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@emotion/is-prop-valid":
-      optional: true
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/be583aeeccfe23902a2676724f66a747e0fa976d94eb3471bd6f9b57ab1eab5b7c08b851728d6b2b5928e8b578c62aa8ec61c47bf6059f8aac76211c8d39e26f
   languageName: node
   linkType: hard
 
@@ -7061,43 +7046,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^12.6.3":
-  version: 12.6.3
-  resolution: "motion-dom@npm:12.6.3"
-  dependencies:
-    motion-utils: "npm:^12.6.3"
-  checksum: 10c0/ed3ff16a2e4d40fc72298f890863222d7ee008888bd6889e5ecbe81a9a5d2d23903289f35796e2e16952e21a270cbd609d74fd30399ce7a684a0f7f855c18251
-  languageName: node
-  linkType: hard
-
-"motion-utils@npm:^12.6.3":
-  version: 12.6.3
-  resolution: "motion-utils@npm:12.6.3"
-  checksum: 10c0/d44ea5b1f2a1b1e03033ae76132f1b431d117c3f205152f9811283cd7ca7782e9d499f4bdb460c64b6668ac64905fcc79636a38b40d37759f9d23b0673098534
-  languageName: node
-  linkType: hard
-
-"motion@npm:^12.6.3":
-  version: 12.6.3
-  resolution: "motion@npm:12.6.3"
-  dependencies:
-    framer-motion: "npm:^12.6.3"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    "@emotion/is-prop-valid": "*"
-    react: ^18.0.0 || ^19.0.0
-    react-dom: ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@emotion/is-prop-valid":
-      optional: true
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/102ddab0fcc5e65b9f9f493f5a3be504c0c0f1d58065c58633914371448db79559e366be5da10a50ed57fb37611d4c42fcb867e7fbe68b2a6f1d57320cfdb606
-  languageName: node
-  linkType: hard
-
 "mrmime@npm:^2.0.1":
   version: 2.0.1
   resolution: "mrmime@npm:2.0.1"
@@ -8373,7 +8321,6 @@ __metadata:
     eslint: "npm:^9.24.0"
     jest: "npm:^29.7.0"
     jest-environment-node: "npm:^29.7.0"
-    motion: "npm:^12.6.3"
     prettier: "npm:^2.6.2"
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
@@ -8939,6 +8886,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 10c0/6c4032340701a9950865f7ae8ef38578d8d7053f5e10518076e6554a9381fa91bd9c6850193695c141f32b21f979c985db07265a758867bac95de05f7d8aeb39
+  languageName: node
+  linkType: hard
+
+"svg-path-parser@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "svg-path-parser@npm:1.1.0"
+  checksum: 10c0/de3afe74a87e60e54261d8bf9e20f24e9b4eb2d7da70b7d967053fcc4b445c5c1996e2c31f8b935e5f4d5e7e5d83363f61626d5babed80f1e913fda70e613359
   languageName: node
   linkType: hard
 
@@ -9713,7 +9667,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "wanim@workspace:packages/wanim"
   dependencies:
-    motion: "npm:^12.6.3"
+    "@types/svg-path-parser": "npm:^1.1.6"
+    svg-path-parser: "npm:^1.1.0"
     tslib: "npm:^2.3.0"
     typescript: "npm:^5.8.3"
   languageName: unknown

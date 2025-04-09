@@ -11,13 +11,12 @@ export class Circle extends WPathObject {
     /**
      * Creates a new square instance with specified radius.
      */
-    constructor(x = 0, y = 0, r = 10) {
+    constructor(x = 0, y = 0, r = 1) {
         super(x, y);
 
         this.r = r;
 
-        this.path = generateCirclePath(this.x, this.y, this.r, 4);
-        this.path.refine(32);
+        this.path = generateCirclePath(0, 0, this.r, 8);
         this.renderPath();
     }
 }

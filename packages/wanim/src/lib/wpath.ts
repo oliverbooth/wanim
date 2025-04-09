@@ -1,6 +1,7 @@
 import { lerpPoints, Point } from "./point.js";
 import clone from "clone";
 import { Quadruple } from "./types.js";
+import svgPathParser from "svg-path-parser";
 
 export type CubicBezierPoints = Quadruple<Point>;
 
@@ -120,6 +121,63 @@ export class WPath {
                 index = 0;
             }
         }
+    }
+
+    static fromSVGPath(pathDefintion: string): WPath {
+        const { parseSVG, makeAbsolute } = svgPathParser;
+
+        const def = makeAbsolute(parseSVG(pathDefintion));
+
+        if (def.length < 1) {
+            throw new Error("svg path is too short");
+        }
+
+        const head = def.shift()!;
+        if (head.code !== "M") {
+            throw new Error("svg path must start with a move instruction");
+        }
+
+        const points: CubicBezierPoints[] = [];
+
+        let cursor: Point = [head.x, head.y];
+        while (def.length > 0) {
+            const inst = def.shift()!;
+            switch (inst.code) {
+                case "L":
+                    points.push([cursor, cursor, [inst.x, inst.y], [inst.x, inst.y]]);
+                    cursor = [inst.x, inst.y];
+                    break;
+                case "Q":
+                    points.push([cursor, [inst.x1, inst.y1], [inst.x1, inst.y1], [inst.x, inst.y]]);
+                    cursor = [inst.x, inst.y];
+                    break;
+                case "C":
+                    points.push([cursor, [inst.x1, inst.y1], [inst.x2, inst.y2], [inst.x, inst.y]]);
+                    cursor = [inst.x, inst.y];
+                    break;
+                case "Z":
+                    points.push([cursor, cursor, [head.x, head.y], [head.x, head.y]]);
+                    cursor = [head.x, head.y];
+                    break;
+
+                default:
+                    throw new Error(`unparseable instruction '${inst.code}'`);
+            }
+        }
+
+        return new WPath(points);
+    }
+
+    static fromPoints(points: Point[]): WPath {
+        if (points.length < 2) {
+            return new WPath();
+        }
+
+        return new WPath(
+            points
+                .map((point, i) => [point, points[(i + 1) % points.length]])
+                .map(([p0, p1]) => [p0, p0, p1, p1] as CubicBezierPoints)
+        );
     }
 }
 
