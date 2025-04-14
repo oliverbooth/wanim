@@ -1,7 +1,7 @@
 /**
  * The base class for objects used in wanim's animations.
  */
-export abstract class WObject<T extends SVGGeometryElement = SVGGeometryElement> {
+export abstract class WObject<T extends SVGElement = SVGElement> {
     /**
      * The DOM element that represents the object's visual.
      */
