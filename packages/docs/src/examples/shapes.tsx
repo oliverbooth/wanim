@@ -1,4 +1,4 @@
-import { Circle, Dot, Line, RegularNgon, Square, Star, WanimScene, WPathObject } from "wanim";
+import { Circle, Dot, Line, RegularNgon, Square, Star, WanimScene } from "wanim";
 import { WanimSceneExample } from "../components/wanim-scene-example";
 
 class Shapes extends WanimScene {

@@ -1,10 +1,11 @@
-import { Circle, Dot, Line, RegularNgon, WGroup, Square, Star, WanimScene, WPathObject } from "wanim";
+import { Star, WanimScene, WGroup } from "wanim";
 import { WanimSceneExample } from "../components/wanim-scene-example";
 
 class Groups extends WanimScene {
     async run() {
         const stars: Star[] = [];
-        const group = new WGroup();
+
+        const group = new WGroup(0);
         this.add(group);
 
         for (let i = 0; i < 3; i++) {

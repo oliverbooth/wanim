@@ -2,7 +2,12 @@
 
 .sl-markdown-content {
     ul {
-        padding-left: 1.5em;
-        list-style: disc;
+        @apply pl-6 list-disc;
+    }
+}
+
+.sl-markdown-content {
+    code {
+        @apply rounded-md mx-0.5 ring ring-[color:var(--sl-color-gray-4)];
     }
 }

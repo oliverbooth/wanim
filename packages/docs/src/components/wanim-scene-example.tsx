@@ -1,7 +1,7 @@
+import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { IoReload } from "react-icons/io5";
 import { wanim, WanimScene } from "wanim";
-import clsx from "clsx";
 
 export function WanimSceneExample({ scene }: { scene: new () => WanimScene }) {
     const container = useRef<HTMLDivElement>(null!);

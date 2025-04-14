@@ -1,7 +1,7 @@
-import { lerpPoints, Point } from "./point.js";
 import clone from "clone";
-import { Quadruple } from "./types.js";
 import svgPathParser from "svg-path-parser";
+import { lerpPoints, Point } from "./point.js";
+import { Quadruple } from "./types.js";
 
 export type CubicBezierPoints = Quadruple<Point>;
 
