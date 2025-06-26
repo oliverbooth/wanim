@@ -11,7 +11,7 @@ class Shapes extends WanimScene {
             new Star(0, 0, 5),
             new Dot(3, 0),
         ];
-        const colors = ["pink", "blue", "red", "orange", "yellow", "gray"];
+        const colors = ["#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#ff8b94", "white"];
 
         for (let i = 0; i < shapes.length; i++) {
             this.add(shapes[i]);

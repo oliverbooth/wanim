@@ -1,18 +1,24 @@
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { IoReload } from "react-icons/io5";
 import { wanim, WanimScene } from "wanim";
+import { useInView } from "../lib/use-in-view";
 
 export function WanimSceneExample({ scene }: { scene: new () => WanimScene }) {
     const container = useRef<HTMLDivElement>(null!);
-    const [renderIndex, setRenderIndex] = useState(0);
+    const [w, setW] = useState<ReturnType<typeof wanim>>();
+    const inView = useInView(container, {});
+
+    const render = useCallback(() => {
+        if (w) w.destroy();
+
+        setW(wanim(scene, container.current));
+    }, [w]);
 
     useEffect(() => {
-        const w = wanim(scene, container.current);
-        return () => {
-            w.destroy();
-        };
-    }, [renderIndex]);
+        if (w) return;
+        if (inView) render();
+    }, [inView]);
 
     return (
         <div className="group relative mt-4! h-80 bg-black ring ring-neutral-800 rounded-md" ref={container}>
@@ -28,7 +34,7 @@ export function WanimSceneExample({ scene }: { scene: new () => WanimScene }) {
                         "hover:bg-neutral-700 hover:text-neutral-400 hover:ring-neutral-500",
                         "transition-all cursor-pointer p-[5px] rounded-sm"
                     )}
-                    onClick={() => setRenderIndex((i) => i + 1)}
+                    onClick={() => render()}
                     tabIndex={-1}
                 >
                     <IoReload className="text-xl" />

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .sl-markdown-content {
-    ul {
+    ul:not([role="tablist"]) {
         @apply pl-6 list-disc;
     }
 }
