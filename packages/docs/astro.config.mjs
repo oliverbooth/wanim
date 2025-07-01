@@ -41,6 +41,9 @@ export default defineConfig({
                     tsconfig: "../wanim/tsconfig.json",
                 }),
             ],
+            expressiveCode: {
+                themes: ["github-dark"],
+            },
         }),
     ],
 

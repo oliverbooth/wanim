@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "prism-theme-github/themes/prism-theme-github-copilot.css";
 
 .sl-markdown-content {
     ul:not([role="tablist"]) {
