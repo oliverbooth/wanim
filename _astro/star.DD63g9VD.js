@@ -1,0 +1,1 @@
+import{W as P,a as f}from"./wanim-scene-example.ksBhMWwy.js";class S extends P{r;n;constructor(o=0,s=0,t=5,n=1){super(o,s),this.n=t,this.r=n,this.path=m(0,0,t,n),this.renderPath()}}function m(e,o,s,t){const n=2*Math.PI/(2*s),r=[];for(let a=0;a<2*s;a++){const i=a%2===1,h=-a*n-Math.PI/2,c=i?t*.5:t,p=e+c*Math.cos(h),u=o+c*Math.sin(h);r.push([p,u])}return f.fromPoints(r)}export{S};
