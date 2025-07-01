@@ -1,8 +1,8 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
+import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 import starlightTypeDoc, { typeDocSidebarGroup } from "starlight-typedoc";
 
 // https://astro.build/config
@@ -41,6 +41,9 @@ export default defineConfig({
                     tsconfig: "../wanim/tsconfig.json",
                 }),
             ],
+            expressiveCode: {
+                themes: ["github-dark"],
+            },
         }),
     ],
 

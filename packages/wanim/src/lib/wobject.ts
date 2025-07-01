@@ -1,19 +1,18 @@
 /**
  * The base class for objects used in wanim's animations.
  */
-export abstract class WObject<T extends SVGGeometryElement = SVGGeometryElement> {
+export abstract class WObject<T extends SVGElement = SVGElement> {
     /**
      * The DOM element that represents the object's visual.
      */
-    public element!: T;
-
-    public x = 0;
-    public y = 0;
+    public element: T;
 
     constructor(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
+        this.element = this.createElement();
+        this.element.setAttribute("transform", `translate(${x}, ${y})`);
     }
+
+    abstract createElement(): T;
 
     /**
      * Hides the object by settings its opacity to zero.
