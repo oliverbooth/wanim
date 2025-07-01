@@ -1,12 +1,11 @@
 import clsx from "clsx";
-import { Highlight } from "prism-react-renderer";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { IoCode, IoReload } from "react-icons/io5";
+import { IoReload } from "react-icons/io5";
 import { wanim, WanimScene } from "wanim";
 import { useInView } from "../lib/use-in-view";
 
 export function WanimSceneExample({ scene }: { scene: new () => WanimScene }) {
-    const [showCode, setShowCode] = useState(false);
+    // const [showCode, setShowCode] = useState(false);
     const container = useRef<HTMLDivElement>(null!);
     const [w, setW] = useState<ReturnType<typeof wanim>>();
     const inView = useInView(container, {});
@@ -40,16 +39,17 @@ export function WanimSceneExample({ scene }: { scene: new () => WanimScene }) {
                         "md:group-hover:opacity-100 md:opacity-25 transition-all duration-200"
                     )}
                 >
-                    <button className={clsx(toolbarButtonStyles)} onClick={() => setShowCode((s) => !s)} tabIndex={-1}>
+                    {/* <button className={clsx(toolbarButtonStyles)} onClick={() => setShowCode((s) => !s)} tabIndex={-1}>
                         <IoCode className="text-xl" />
                         <span className="text-sm">{showCode ? "Hide" : "Show"} Code</span>
-                    </button>
+                    </button> */}
                     <button className={clsx(toolbarButtonStyles)} onClick={() => render()} tabIndex={-1}>
                         <IoReload className="text-xl" />
                     </button>
                 </div>
             </div>
-            {showCode && (
+            {/* TODO: This is broken as the scene code is minified in production. */}
+            {/* {showCode && (
                 <div className="!-mt-4 px-1 pt-3 bg-(--ec-frm-edBg)">
                     <Highlight language="ts" code={scene.toString()} theme={{ plain: {}, styles: [] }}>
                         {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -65,7 +65,7 @@ export function WanimSceneExample({ scene }: { scene: new () => WanimScene }) {
                         )}
                     </Highlight>
                 </div>
-            )}
+            )} */}
         </div>
     );
 }
