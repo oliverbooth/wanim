@@ -1,0 +1,1 @@
+import{j as e,W as t,a}from"./wanim-scene-example.Cq1RX7Ki.js";import{W as n}from"./wgroup.DY3EG0F5.js";import{S as m}from"./star.bYFGHpXs.js";import"./index.DRBQTP7f.js";class p extends a{async run(){const o=new n;this.add(o);for(let s=0;s<3;s++){const r=new m(-3+s*3,0);r.setFill("#FDDA0D"),r.show(),o.add(r)}}}function d(){return e.jsx(t,{scene:p})}export{d as GroupsExample};
