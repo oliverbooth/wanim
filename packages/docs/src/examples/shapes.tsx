@@ -1,5 +1,8 @@
 import { Circle, Dot, Line, RegularNgon, Square, Star, WanimScene } from "wanim";
+
 import { WanimSceneExample } from "../components/wanim-scene-example";
+import { extractExampleSource } from "../lib/extract-example-source";
+import code from "./shapes?raw";
 
 class Shapes extends WanimScene {
     async run() {
@@ -23,5 +26,5 @@ class Shapes extends WanimScene {
 }
 
 export function ShapesExample() {
-    return <WanimSceneExample scene={Shapes} />;
+    return <WanimSceneExample scene={Shapes} source={extractExampleSource(code)} />;
 }

@@ -1,5 +1,5 @@
-import { lerp } from "./math.js";
-import { Tuple } from "./types.js";
+import { lerp } from "../math.js";
+import { Tuple } from "../types.js";
 
 /**
  * Represents a point as a tuple of numbers.

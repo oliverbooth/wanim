@@ -1,5 +1,5 @@
+import { WTween, tween } from "../tweens/wtween.js";
 import { WPathObject } from "../wpathobject.js";
-import { WTween } from "../wtween.js";
 
 /**
  * Creates an animation which morphs a {@link WPathObject} into another.
@@ -22,8 +22,12 @@ export function Morph(a: WPathObject, b: WPathObject): WTween {
     //     stroke: makeInterpolator("stroke", "#00000000"),
     // };
 
-    return new WTween({
-        onUpdate: (t) => {
+    return tween()
+        .onComplete(() => {
+            a.hide();
+            b.show();
+        })
+        .onUpdate((t) => {
             // TODO: this only really looks good if the points are already close to each other.
             // maybe we could otherwise offset the path so points are close? naively that would be O(n^2).
             a.path = aPath.interpolate(bPath, t);
@@ -32,11 +36,6 @@ export function Morph(a: WPathObject, b: WPathObject): WTween {
             // for (const [attr, interpolater] of Object.entries(interpolaters)) {
             //     a.element.setAttribute(attr, interpolater(t));
             // }
-        },
-        onComplete: () => {
-            a.hide();
-            b.show();
-        },
-        duration: 0.5,
-    });
+        })
+        .duration(0.5);
 }

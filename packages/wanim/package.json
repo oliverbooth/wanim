@@ -7,7 +7,8 @@
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "scripts": {
-        "build": "tsc --project tsconfig.lib.json"
+        "build": "tsc --project tsconfig.lib.json",
+        "watch": "tsc --project tsconfig.lib.json --watch"
     },
     "exports": {
         "./package.json": "./package.json",

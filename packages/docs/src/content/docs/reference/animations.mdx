@@ -1,0 +1,75 @@
+---
+title: Animations
+---
+
+Animations are the lifeblood of this library, allowing you to bring your visualizations to life. They are built using
+tweens, which are sequences of changes over time that can be applied to various attributes of `WObject`s.
+
+## Tweens
+
+A tween is used to animate properties over a specified duration. You can create a `WTween` instance using the `tween` function:
+
+```ts
+const square = this.add(new Square(0, 0, 2));
+await this.play(
+    tween()
+        .onUpdate((t) => (square.x = lerp(0, 2, t)))
+        .ease("inOutSine"),
+);
+```
+
+Alternatively, `WObject`s have a built-in animator for their properties:
+
+```ts
+const square = this.add(new Square(0, 0, 2));
+await this.play(square.animate.x(2, 1).ease("inOutSine"));
+```
+
+Underneath, they use a `WTweener` to animate the specified property.
+
+{/* prettier-ignore */}
+```ts
+let value = 0;
+const tween = tweener(() => value, (v) => (value = v), 1, 1);
+```
+
+### Sequences
+
+Multiple tweens can be composed together using sequences. A sequence allows you to chain multiple animations, control their timing, and create more complex effects.
+
+```ts
+const square = this.add(new Square(-2, 0, 2));
+square.setFill("red");
+square.scale = [0, 0];
+square.show();
+
+await this.play(
+    sequence()
+        .append(square.animate.scale([1, 1], 1).ease("outElastic"))
+        .wait(0.5)
+        .append(square.animate.x(2, 1).ease("inOutSine"))
+        .append(square.animate.scale([0, 0], 1).ease("inOutSine"))
+        .join(square.animate.rotate(180, 1).ease("inOutSine")),
+);
+```
+
+import { SequencesExample } from "../../../examples/sequences.jsx";
+
+<SequencesExample client:load />
+
+You can also use `.callback(...)` to insert custom logic or `.wait(...)` to pause the sequence for a specified duration or until the specified callback resolves.
+
+## Pre-defined Animations
+
+Apart from [animating common attributes](../objects/#animating-attributes), you can also use pre-defined
+animations to easily compose more complex effects.
+
+### Creation
+
+#### Create
+
+#### Write
+
+### Deletion
+
+#### Uncreate

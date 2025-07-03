@@ -2,7 +2,8 @@
 title: Quickstart
 ---
 
-import { Tabs, TabItem, Code, Aside } from "@astrojs/starlight/components";
+import { Aside, Code, TabItem, Tabs } from "@astrojs/starlight/components";
+
 import { CreateCircleExample } from "../../../examples/create-circle.jsx";
 
 This guide will lead you through displaying simple scenes using wanim, a web engine for mathematical animations, inspired by [manim](https://www.manim.community/).
@@ -31,7 +32,7 @@ Via your favorite package manager:
 You can then import the library in your JavaScript code:
 
 ```js
-import { wanim, WanimScene } from "wanim";
+import { WanimScene, wanim } from "wanim";
 ```
 
 ### `<script>` Tag
@@ -42,7 +43,7 @@ You can use the modern `import` syntax:
 
 ```html
 <script type="module">
-    import { wanim, WanimScene } from "https://cdn.jsdelivr.net/npm/wanim@latest/+esm";
+    import { WanimScene, wanim } from "https://cdn.jsdelivr.net/npm/wanim@latest/+esm";
 </script>
 ```
 

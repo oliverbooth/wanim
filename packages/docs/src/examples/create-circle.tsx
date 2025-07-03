@@ -1,6 +1,6 @@
 import { Circle, Create, WanimScene } from "wanim";
+
 import { WanimSceneExample } from "../components/wanim-scene-example";
-import code from "../components/wanim-scene-example?raw";
 
 class CreateCircle extends WanimScene {
     async run() {
@@ -11,6 +11,5 @@ class CreateCircle extends WanimScene {
 }
 
 export function CreateCircleExample() {
-    console.log(code);
     return <WanimSceneExample scene={CreateCircle} />;
 }

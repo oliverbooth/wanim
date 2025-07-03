@@ -1,5 +1,5 @@
+import { WTween, tween } from "../tweens/wtween.js";
 import { WPathObject } from "../wpathobject.js";
-import { WTween } from "../wtween.js";
 
 /**
  * Creates an "exit" animation for a {@link WPathObject}, by animating the length of the path to be zero.
@@ -9,17 +9,12 @@ export function Uncreate(obj: WPathObject): WTween {
     const path = obj.path.clone();
     const pathLength = path.getLength();
 
-    return new WTween({
-        onPlay: () => {
-            obj.show();
-        },
-        onUpdate: (t) => {
+    return tween()
+        .onPlay(() => obj.show())
+        .onComplete(() => obj.hide())
+        .onUpdate((t) => {
             obj.path = path.truncate((1 - t) * pathLength);
             obj.renderPath();
-        },
-        onComplete: () => {
-            obj.hide();
-        },
-        duration: 0.5,
-    });
+        })
+        .duration(0.5);
 }

@@ -32,6 +32,7 @@ export class WPathObject extends WObject<SVGPathElement> {
      */
     renderPath() {
         this.element.setAttribute("d", this.path.getPathDefinition());
+        this.updateTransform();
     }
 
     static fromSVGPath(pathDefinition: string): WPathObject {

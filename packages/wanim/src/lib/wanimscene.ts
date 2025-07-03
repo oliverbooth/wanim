@@ -1,5 +1,5 @@
+import { WTweenLike } from "./tweens/wtweenlike.js";
 import { WObject } from "./wobject.js";
-import { WTween } from "./wtween.js";
 
 /**
  * The base class for wanim animations. The {@link run} method essentially defines a script which the scene then performs.
@@ -9,7 +9,7 @@ export abstract class WanimScene {
      * The objects contained in the scene.
      */
     objects: WObject[] = [];
-    tweens: WTween[] = [];
+    tweenLikes: WTweenLike[] = [];
 
     /**
      * The DOM SVG container. This can be expected to be populated by the time the scene runs.
@@ -19,13 +19,13 @@ export abstract class WanimScene {
     abstract run(): void | Promise<void>;
 
     update(delta: number): void {
-        for (const tween of this.tweens) {
+        for (const tween of this.tweenLikes) {
             tween.update(delta);
         }
     }
 
-    play(tween: WTween): WTween {
-        this.tweens.push(tween);
+    play(tween: WTweenLike): WTweenLike {
+        this.tweenLikes.push(tween);
         tween.play();
 
         return tween;

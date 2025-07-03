@@ -5,28 +5,29 @@ import { WPathObject } from "../wpathobject.js";
 /**
  * Represents a square object.
  */
-export class Square extends WPathObject {
-    public s: number;
+export class Rectangle extends WPathObject {
+    public w: number;
+    public h: number;
 
     /**
-     * Creates a new square instance with specified side length.
+     * Creates a new rectangle of specified size.
      */
-    constructor(x = 0, y = 0, s = 1) {
+    constructor(x = 0, y = 0, w = 1, h = 1) {
         super(x, y);
 
-        this.s = s;
+        this.w = w;
+        this.h = h;
         this.path = WPath.fromPoints([
             [0, 0],
-            [s, 0],
-            [s, s],
-            [0, s],
+            [w, 0],
+            [w, h],
+            [0, h],
         ]);
 
         this.renderPath();
-        this.updateTransform();
     }
 
     override get size(): Point {
-        return [this.s, this.s];
+        return [this.w, this.h];
     }
 }

@@ -1,4 +1,4 @@
-import { Point } from "../point.js";
+import { Point } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
@@ -15,9 +15,13 @@ export class Circle extends WPathObject {
         super(x, y);
 
         this.r = r;
+        this.path = generateCirclePath(this.r, this.r, this.r, 8);
 
-        this.path = generateCirclePath(0, 0, this.r, 8);
         this.renderPath();
+    }
+
+    override get size(): Point {
+        return [this.r * 2, this.r * 2];
     }
 }
 

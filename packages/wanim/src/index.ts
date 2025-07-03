@@ -7,5 +7,9 @@ export * from "./lib/wobject.js";
 export * from "./lib/wpath.js";
 export * from "./lib/wpathobject.js";
 
+export * from "./lib/wtex.js";
+
+export * from "./lib/geometry/index.js";
+export * from "./lib/tweens/index.js";
 export * from "./lib/animations/index.js";
 export * from "./lib/shapes/index.js";

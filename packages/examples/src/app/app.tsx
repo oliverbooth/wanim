@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Circle, Create, Morph, Square, Uncreate, wanim, WanimScene } from "wanim";
+import { Circle, Create, Morph, Square, Uncreate, WanimScene, wanim } from "wanim";
 
 export function App() {
     useEffect(() => {

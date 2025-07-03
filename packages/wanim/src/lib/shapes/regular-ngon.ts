@@ -1,19 +1,23 @@
-import { Point } from "../point.js";
+import { Point } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
 export class RegularNgon extends WPathObject {
-    public r: number;
     public n: number;
+    public r: number;
 
     constructor(x = 0, y = 0, n = 5, r = 1) {
         super(x, y);
 
         this.n = n;
         this.r = r;
+        this.path = generateRegularNgon(r, r, n, r);
 
-        this.path = generateRegularNgon(0, 0, n, r);
         this.renderPath();
+    }
+
+    override get size(): Point {
+        return [this.r * 2, this.r * 2];
     }
 }
 

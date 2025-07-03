@@ -6,6 +6,7 @@ export class Dot extends WObject {
 
         this.element.setAttribute("r", "0.1");
         this.setFill("white");
+        this.updateTransform();
     }
 
     override createElement(): SVGPathElement {

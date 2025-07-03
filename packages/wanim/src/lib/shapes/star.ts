@@ -1,4 +1,4 @@
-import { Point } from "../point.js";
+import { Point } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 

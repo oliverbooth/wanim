@@ -1,6 +1,7 @@
 import clone from "clone";
 import svgPathParser from "svg-path-parser";
-import { lerpPoints, Point } from "./point.js";
+
+import { Point, lerpPoints } from "./geometry/point.js";
 import { Quadruple } from "./types.js";
 
 export type CubicBezierPoints = Quadruple<Point>;
@@ -87,7 +88,7 @@ export class WPath {
         const p = 3;
         const fixedSegments = this.segments.map(
             (segment) =>
-                segment.points.map((point) => point.map((coord) => coord.toFixed(p)).join(",")) as Quadruple<string>
+                segment.points.map((point) => point.map((coord) => coord.toFixed(p)).join(",")) as Quadruple<string>,
         );
 
         return (
@@ -147,6 +148,19 @@ export class WPath {
                     points.push([cursor, cursor, [inst.x, inst.y], [inst.x, inst.y]]);
                     cursor = [inst.x, inst.y];
                     break;
+                case "H":
+                    points.push([cursor, cursor, [inst.x, cursor[1]], [inst.x, cursor[1]]]);
+                    cursor = [inst.x, cursor[1]];
+                    break;
+                case "V":
+                    points.push([cursor, cursor, [cursor[0], inst.y], [cursor[0], inst.y]]);
+                    cursor = [cursor[0], inst.y];
+                    break;
+                case "T":
+                    // TODO: this may not be correct?
+                    points.push([cursor, cursor, [inst.x, inst.y], [inst.x, inst.y]]);
+                    cursor = [inst.x, inst.y];
+                    break;
                 case "Q":
                     points.push([cursor, [inst.x1, inst.y1], [inst.x1, inst.y1], [inst.x, inst.y]]);
                     cursor = [inst.x, inst.y];
@@ -158,6 +172,11 @@ export class WPath {
                 case "Z":
                     points.push([cursor, cursor, [head.x, head.y], [head.x, head.y]]);
                     cursor = [head.x, head.y];
+                    break;
+                case "M":
+                    // TODO: this may not be correct?
+                    points.push([cursor, cursor, [inst.x, inst.y], [inst.x, inst.y]]);
+                    cursor = [inst.x, inst.y];
                     break;
 
                 default:
@@ -176,7 +195,7 @@ export class WPath {
         return new WPath(
             points
                 .map((point, i) => [point, points[(i + 1) % points.length]])
-                .map(([p0, p1]) => [p0, p0, p1, p1] as CubicBezierPoints)
+                .map(([p0, p1]) => [p0, p0, p1, p1] as CubicBezierPoints),
         );
     }
 }
@@ -203,7 +222,7 @@ export class WPathSegment {
      */
     interpolate(other: WPathSegment, t: number): WPathSegment {
         return new WPathSegment(
-            this.points.map((point, i) => lerpPoints(point, other.points[i], t)) as CubicBezierPoints
+            this.points.map((point, i) => lerpPoints(point, other.points[i], t)) as CubicBezierPoints,
         );
     }
 
