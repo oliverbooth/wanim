@@ -1,3 +1,5 @@
+import Color, { ColorInstance } from "color";
+
 import { lerp } from "../math.js";
 import { WTween } from "./wtween.js";
 
@@ -41,14 +43,17 @@ function getInterpolator<T>(target: T): Interpolator<T> {
         return ((start, target, progress) =>
             lerp(start, target, progress)) satisfies Interpolator<number> as unknown as Interpolator<T>;
     }
+    if (target instanceof Color) {
+        return ((start, target, progress) =>
+            start.mix(target, progress)) satisfies Interpolator<ColorInstance> as unknown as Interpolator<T>;
+    }
+
     if (Array.isArray(target)) {
-        if (typeof target[0] === "number") {
-            const interpolator = getInterpolator(target[0]);
-            return ((start, target, progress) => {
-                // if (start.length !== target.length) throw new Error("Array lengths do not match");
-                return start.map((value, index) => interpolator(value, target[index], progress));
-            }) satisfies Interpolator<number[]> as unknown as Interpolator<T>;
-        }
+        const interpolators = target.map(getInterpolator);
+        return ((start, target, progress) => {
+            // if (start.length !== target.length) throw new Error("Array lengths do not match");
+            return start.map((value, index) => interpolators[index](value, target[index], progress));
+        }) satisfies Interpolator<number[]> as unknown as Interpolator<T>;
     }
 
     throw new Error();

@@ -1,3 +1,5 @@
+import Color, { ColorInstance, ColorLike } from "color";
+
 import { Anchor, anchorToPoint } from "./geometry/anchors.js";
 import { Point } from "./geometry/point.js";
 import { WObjectAnimator, makeWObjectAnimator } from "./tweens/wobjectanimator.js";
@@ -18,6 +20,20 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
     private _scaleY: number = 1;
     private _rotate: number = 0;
     private _anchor: Anchor = Anchor.Center;
+
+    private _fill: ColorInstance = Color("transparent");
+    private _stroke: ColorInstance = Color("transparent");
+    private _strokeWidth: number = 1;
+
+    private _visible = false;
+
+    public get visible() {
+        return this._visible;
+    }
+    public set visible(v: boolean) {
+        this._visible = v;
+        this.element.setAttribute("visibility", v ? "visible" : "hidden");
+    }
 
     public get x(): number {
         return this._x;
@@ -89,20 +105,6 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
         return [0, 0]; // This should be overridden by subclasses to return the actual size of the object.
     }
 
-    public get visible(): boolean {
-        return this._visible;
-    }
-    public set visible(visible: boolean) {
-        this._visible = visible;
-        if (visible) {
-            this.show();
-        } else {
-            this.hide();
-        }
-    }
-
-    private _visible: boolean = true;
-
     constructor(x = 0, y = 0) {
         this.element = this.createElement();
 
@@ -112,40 +114,56 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
 
     abstract createElement(): T;
 
-    /**
-     * Hides the object by settings its opacity to zero.
-     */
     hide() {
-        this.element.setAttribute("opacity", "0");
+        this.visible = false;
     }
 
-    /**
-     * Shows the object by settings its opacity to one.
-     */
     show() {
-        this.element.setAttribute("opacity", "1");
+        this.visible = true;
     }
 
-    /**
-     * Sets the fill of the object, with an optional opacity. If fill transitions are meant to be used, then one cant specify the color by its name.
-     */
-    setFill(color: string, opacity?: number) {
-        this.element.setAttribute("fill", color);
-
-        if (typeof opacity !== "undefined") this.element.setAttribute("fill-opacity", opacity.toString());
+    get fill(): ColorInstance {
+        return this._fill;
+    }
+    get fillOpacity() {
+        return this._fill.alpha();
     }
 
-    setStroke(color: string) {
-        this.element.setAttribute("stroke", color);
+    set fill(colorLike: ColorLike) {
+        this._fill = Color(colorLike);
+        this.updateFill();
     }
-    setStrokeWidth(width: number) {
-        this.element.setAttribute("stroke-width", width.toString());
+    set fillOpacity(v: number) {
+        this._fill.alpha(v);
+        this.updateFill();
+    }
+
+    get stroke(): ColorInstance {
+        return this._stroke;
+    }
+    get strokeWidth() {
+        return this._strokeWidth;
+    }
+    get strokeOpacity() {
+        return this._stroke.alpha();
+    }
+
+    set stroke(colorLike: ColorLike) {
+        this._stroke = Color(colorLike);
+        this.updateStroke();
+    }
+    set strokeWidth(w: number) {
+        this._strokeWidth = w;
+        this.updateStroke();
+    }
+    set strokeOpacity(v: number) {
+        this._stroke.alpha(v);
+        this.updateStroke();
     }
 
     updateTransform() {
         const anchorPoint = anchorToPoint(this._anchor);
-
-        let size = this.size;
+        const size = this.size;
 
         this.element.setAttribute(
             "transform",
@@ -157,5 +175,16 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
             ].join(" "),
         );
         this.element.setAttribute("transform-origin", `${anchorPoint[0] * size[0]} ${anchorPoint[1] * size[1]}`);
+    }
+
+    updateStroke() {
+        this.element.setAttribute("stroke", this.stroke.hex());
+        this.element.setAttribute("stroke-opacity", this.strokeOpacity.toString());
+        this.element.setAttribute("stroke-width", this.strokeWidth.toString());
+    }
+
+    updateFill() {
+        this.element.setAttribute("fill", this.fill.hex());
+        this.element.setAttribute("fill-opacity", this.fillOpacity.toString());
     }
 }

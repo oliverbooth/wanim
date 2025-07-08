@@ -5,7 +5,7 @@ import { WanimSceneExample } from "../components/wanim-scene-example";
 class CreateCircle extends WanimScene {
     async run() {
         const circle = this.add(new Circle(0, 0, 2));
-        circle.setFill("pink", 0.5);
+        circle.fill = "pink";
         await this.play(Create(circle));
     }
 }

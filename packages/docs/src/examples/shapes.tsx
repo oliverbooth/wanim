@@ -20,7 +20,7 @@ class Shapes extends WanimScene {
             this.add(shapes[i]);
 
             shapes[i].show();
-            shapes[i].setFill(colors[i], 1);
+            shapes[i].fill = colors[i];
         }
     }
 }

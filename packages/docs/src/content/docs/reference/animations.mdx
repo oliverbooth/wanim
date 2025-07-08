@@ -5,6 +5,19 @@ title: Animations
 Animations are the lifeblood of this library, allowing you to bring your visualizations to life. They are built using
 tweens, which are sequences of changes over time that can be applied to various attributes of `WObject`s.
 
+## Common Attributes
+
+[Common attributes](/reference/objects/#common-attributes) can be animated directly via:
+
+```ts {5-6}
+const circle = new Circle(-2, 0);
+circle.fill = "yellow";
+circle.show();
+
+// animate the x-coordinate to 4 over 1 second with the specified ease
+await this.play(circle.animate.x(4, 1).ease("inOutSine"));
+```
+
 ## Tweens
 
 A tween is used to animate properties over a specified duration. You can create a `WTween` instance using the `tween` function:
@@ -18,7 +31,7 @@ await this.play(
 );
 ```
 
-Alternatively, `WObject`s have a built-in animator for their properties:
+Alternatively, we have already seen that `WObject`s have a built-in animator for their properties:
 
 ```ts
 const square = this.add(new Square(0, 0, 2));
@@ -39,7 +52,7 @@ Multiple tweens can be composed together using sequences. A sequence allows you 
 
 ```ts
 const square = this.add(new Square(-2, 0, 2));
-square.setFill("red");
+square.fill = "red";
 square.scale = [0, 0];
 square.show();
 
@@ -48,6 +61,7 @@ await this.play(
         .append(square.animate.scale([1, 1], 1).ease("outElastic"))
         .wait(0.5)
         .append(square.animate.x(2, 1).ease("inOutSine"))
+        .join(square.animate.fill("green", 0.5))
         .append(square.animate.scale([0, 0], 1).ease("inOutSine"))
         .join(square.animate.rotate(180, 1).ease("inOutSine")),
 );
@@ -61,7 +75,7 @@ You can also use `.callback(...)` to insert custom logic or `.wait(...)` to paus
 
 ## Pre-defined Animations
 
-Apart from [animating common attributes](../objects/#animating-attributes), you can also use pre-defined
+Apart from [animating common attributes](#common-attributes), you can also use pre-defined
 animations to easily compose more complex effects.
 
 ### Creation

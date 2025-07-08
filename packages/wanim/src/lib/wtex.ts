@@ -89,9 +89,9 @@ export class WTex extends WGroup {
                                 const wpath = WPathObject.fromSVGPath(element.getAttribute("d")!);
                                 wpath.position = [translateX, translateY];
                                 wpath.scale = [scaleX, scaleY];
-                                wpath.setFill("none");
-                                wpath.setStroke("white");
-                                wpath.setStrokeWidth(0.05);
+                                wpath.fill = "transparent";
+                                wpath.stroke = "white";
+                                wpath.strokeWidth = 0.05;
 
                                 this.add(wpath);
                             } catch (e) {
@@ -106,7 +106,7 @@ export class WTex extends WGroup {
                             const y = parseFloat(element.getAttribute("y")!) * scaleFactor * scaleY + translateY;
 
                             const rect = new Rectangle(x, y, w, h);
-                            rect.setFill("white");
+                            rect.fill = "white";
                             rect.anchor = Anchor.TopLeft;
 
                             this.add(rect);

@@ -10,26 +10,13 @@ import { LaTeXExample } from "../../../examples/latex-text.jsx";
 Any rendered vector element in the scene is a `WObject`. These objects serve as the building blocks for creating and
 manipulating visual elements in the scene. They can be transformed, styled, and animated to suit various needs.
 
-`WObject`s share a <span id="common-attributes">common set of attributes</span>, which can be get, set and [animated](#animating-attributes), namely
+`WObject`s share a <span id="common-attributes">common set of attributes</span>, which can be get, set and (therefore) animated, namely
 `x`, `y`, `scaleX`, `scaleY`, `rotate`, `opacity`, `fillColor`, `fillOpacity`, `strokeWidth` and `strokeColor`.
 
 There also exist sugar properties in the form of `position` and `scale`, which allow simultaneous
 assignment of similar attributes.
 
-## Animating attributes
-
-[Common attributes](#common-attributes) can be animated via a tween-style API:
-
-```ts {5-6}
-const circle = new Circle(-2, 0);
-circle.setFill("yellow");
-circle.show();
-
-// animate the x-coordinate to 4 over 1 second with the specified ease
-await this.play(circle.animate.x(4, 1).ease("inOutSine"));
-```
-
-For more details, refer to the [Animations](../animations) section.
+For further information on animating the above attributes, refer to the [Animations](../animations) section.
 
 ## Groups
 
@@ -44,7 +31,7 @@ this.add(group);
 
 for (let i = 0; i < 3; i++) {
     const star = new Star(-3 + i * 3, 0);
-    star.setFill("yellow");
+    star.fill = "yellow";
     star.show();
     stars.push(star);
     group.add(star);

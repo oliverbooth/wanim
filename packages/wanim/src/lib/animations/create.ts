@@ -27,8 +27,9 @@ export function Create(obj: WPathObject | WTex): WTween {
                 } else {
                     const d = (t - 0.5) * 2;
                     children.forEach((child, i) => {
-                        child.setFill("white", d);
-                        child.setStrokeWidth(0.05 * (1 - d));
+                        child.fill = "white";
+                        child.fillOpacity = d;
+                        child.strokeWidth = 0.05 * (1 - d);
                     });
                 }
             })

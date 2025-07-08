@@ -10,7 +10,7 @@ class Groups extends WanimScene {
 
         for (let i = 0; i < 3; i++) {
             const star = new Star(-3 + i * 3, 0);
-            star.setFill("#FDDA0D");
+            star.fill = "#FDDA0D";
             star.show();
             stars.push(star);
             group.add(star);
