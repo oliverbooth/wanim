@@ -1,0 +1,1 @@
+import{b as P,c as f}from"./wanim-scene-example.BF4PekrL.js";class S extends P{r;n;constructor(o=0,s=0,t=5,n=1){super(o,s),this.n=t,this.r=n,this.path=m(0,0,t,n),this.renderPath()}}function m(e,o,s,t){const n=2*Math.PI/(2*s),r=[];for(let a=0;a<2*s;a++){const i=a%2===1,c=-a*n-Math.PI/2,h=i?t*.5:t,p=e+h*Math.cos(c),u=o+h*Math.sin(c);r.push([p,u])}return f.fromPoints(r)}export{S};

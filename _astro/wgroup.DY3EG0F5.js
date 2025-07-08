@@ -1,1 +1,0 @@
-import{d as t}from"./wanim-scene-example.Cq1RX7Ki.js";class s extends t{children=[];createElement(){return document.createElementNS("http://www.w3.org/2000/svg","g")}get size(){const e=this.element.getBBox();return[e.width,e.height]}add(e){return this.children.push(e),this.element.appendChild(e.element),this}}export{s as W};

@@ -1,0 +1,1 @@
+import{j as r,W as a,a as i}from"./wanim-scene-example.BF4PekrL.js";import{C as t}from"./create.NhxhdayE.js";import{C as s}from"./circle.CTCPCUmb.js";import"./index.DRBQTP7f.js";import"./wgroup.uHJ3ojvL.js";class n extends i{async run(){const e=this.add(new s(0,0,2));e.fill="pink",await this.play(t(e))}}function x(){return r.jsx(a,{scene:n})}export{x as CreateCircleExample};
