@@ -19,13 +19,14 @@ export class WTex extends WGroup {
             ...options,
         };
 
+        this.fill("white");
         this.rendered = new Promise((resolve) => {
             tex2svg(text).then((svg) => {
                 const viewBox = svg.getAttribute("viewBox")!;
                 const [minX, minY, , height] = viewBox.split(" ").map(Number);
                 const scaleFactor = options.fontScale / height;
 
-                this.position = [minX * scaleFactor, -minY * scaleFactor];
+                const [offsetX, offsetY] = [minX * scaleFactor, minY * scaleFactor];
 
                 const traverse = (
                     node: Node,
@@ -86,13 +87,10 @@ export class WTex extends WGroup {
                             }
 
                             try {
-                                const wpath = WPathObject.fromSVGPath(element.getAttribute("d")!);
-                                wpath.position = [translateX, translateY];
-                                wpath.scale = [scaleX, scaleY];
-                                wpath.fill = "transparent";
-                                wpath.stroke = "white";
-                                wpath.strokeWidth = 0.05;
-
+                                const wpath = WPathObject.fromSVGPath(element.getAttribute("d")!)
+                                    .position([translateX, translateY])
+                                    .scale([scaleX, scaleY])
+                                    .fill(this.fill());
                                 this.add(wpath);
                             } catch (e) {
                                 console.error(e);
@@ -105,10 +103,7 @@ export class WTex extends WGroup {
                             const x = parseFloat(element.getAttribute("x")!) * scaleFactor * scaleX + translateX;
                             const y = parseFloat(element.getAttribute("y")!) * scaleFactor * scaleY + translateY;
 
-                            const rect = new Rectangle(x, y, w, h);
-                            rect.fill = "white";
-                            rect.anchor = Anchor.TopLeft;
-
+                            const rect = new Rectangle(x, y, w, h).fill(this.fill()).anchor(Anchor.TopLeft);
                             this.add(rect);
                         }
                     }
@@ -118,8 +113,9 @@ export class WTex extends WGroup {
                     });
                 };
 
-                traverse(svg, 0, 0, 1, 1);
-                this.updateTransform();
+                traverse(svg, -offsetX, -offsetY, 1, 1);
+                window.requestAnimationFrame(() => this.updateTransform());
+
                 resolve();
             });
         });

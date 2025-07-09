@@ -1,4 +1,4 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
@@ -20,7 +20,7 @@ export class Circle extends WPathObject {
         this.renderPath();
     }
 
-    override get size(): Point {
+    override get size(): Vector2 {
         return [this.r * 2, this.r * 2];
     }
 }
@@ -29,7 +29,7 @@ function generateCirclePath(cx: number, cy: number, r: number, segments: number)
     const angleStep = (2 * Math.PI) / segments;
     const k = (4 / 3) * Math.tan(angleStep / 4);
 
-    const points: [Point, Point, Point, Point][] = [];
+    const points: [Vector2, Vector2, Vector2, Vector2][] = [];
 
     for (let i = 0; i < segments; i++) {
         const theta1 = -i * angleStep;

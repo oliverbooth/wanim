@@ -1,9 +1,9 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
 export class Line extends WPathObject {
-    constructor(a: Point, b: Point) {
+    constructor(a: Vector2, b: Vector2) {
         super(0, 0);
 
         this.path = WPath.fromPoints([a, b]);

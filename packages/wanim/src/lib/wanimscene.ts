@@ -1,3 +1,5 @@
+import Color, { ColorInstance, ColorLike } from "color";
+
 import { WTweenLike } from "./tweens/wtweenlike.js";
 import { WObject } from "./wobject.js";
 
@@ -15,6 +17,13 @@ export abstract class WanimScene {
      * The DOM SVG container. This can be expected to be populated by the time the scene runs.
      */
     container: SVGElement | null = null;
+
+    private _background: ColorInstance = Color("black");
+
+    public set background(color: ColorLike) {
+        this._background = Color(color);
+        this.container!.style.backgroundColor = this._background.hex();
+    }
 
     abstract run(): void | Promise<void>;
 

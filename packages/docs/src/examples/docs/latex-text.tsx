@@ -1,6 +1,6 @@
-import { Create, WTex, WanimScene } from "wanim";
+import { Create, Dot, WTex, WanimScene } from "wanim";
 
-import { WanimSceneExample } from "../components/wanim-scene-example";
+import { WanimSceneExample } from "@/components/wanim-scene-example";
 
 class LaTeX extends WanimScene {
     async run() {

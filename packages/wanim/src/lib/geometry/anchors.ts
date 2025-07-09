@@ -1,4 +1,4 @@
-import { Point } from "./point.js";
+import { Vector2 } from "./point.js";
 
 export enum Anchor {
     TopLeft = "top-left",
@@ -12,7 +12,7 @@ export enum Anchor {
     BottomRight = "bottom-right",
 }
 
-export function anchorToPoint(anchor: Anchor): Point {
+export function anchorToPoint(anchor: Anchor): Vector2 {
     switch (anchor) {
         case Anchor.TopLeft:
             return [0, 0];

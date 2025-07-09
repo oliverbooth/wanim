@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { IoCode, IoReload } from "react-icons/io5";
 import { WanimScene, wanim } from "wanim";
 
-import { useInView } from "../lib/use-in-view";
+import { useInView } from "@/lib/use-in-view";
 
 export function WanimSceneExample({ scene, source }: { scene: new () => WanimScene; source?: string }) {
     const [showCode, setShowCode] = useState(false);
@@ -32,7 +32,9 @@ export function WanimSceneExample({ scene, source }: { scene: new () => WanimSce
     return (
         <div className="not-content">
             <div
-                className={clsx("group relative mt-4! h-80 bg-black ring ring-neutral-800 rounded-md shadow-md")}
+                className={clsx(
+                    "group relative mt-4! h-80 bg-black ring ring-neutral-800 rounded-md shadow-md overflow-hidden",
+                )}
                 ref={container}
             >
                 <div

@@ -1,12 +1,12 @@
 import { Square, WanimScene, sequence } from "wanim";
 
-import { WanimSceneExample } from "../components/wanim-scene-example";
+import { WanimSceneExample } from "@/components/wanim-scene-example";
 
 class Sequences extends WanimScene {
     async run() {
         const square = this.add(new Square(-2, 0, 2));
-        square.fill = "red";
-        square.scale = [0, 0];
+        square.fill("red");
+        square.scale([0, 0]);
         square.show();
 
         await this.play(

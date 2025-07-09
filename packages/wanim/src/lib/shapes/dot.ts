@@ -5,7 +5,7 @@ export class Dot extends WObject {
         super(x, y);
 
         this.element.setAttribute("r", (1 / 10).toString());
-        this.fill = "white";
+        this.fill("white");
 
         this.updateTransform();
     }

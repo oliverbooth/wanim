@@ -1,4 +1,4 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
@@ -16,7 +16,7 @@ export class RegularNgon extends WPathObject {
         this.renderPath();
     }
 
-    override get size(): Point {
+    override get size(): Vector2 {
         return [this.r * 2, this.r * 2];
     }
 }
@@ -24,7 +24,7 @@ export class RegularNgon extends WPathObject {
 function generateRegularNgon(cx: number, cy: number, n: number, r: number): WPath {
     const angleStep = (2 * Math.PI) / n;
 
-    const points: Point[] = [];
+    const points: Vector2[] = [];
 
     for (let i = 0; i < n; i++) {
         const theta = -i * angleStep - Math.PI / 2;

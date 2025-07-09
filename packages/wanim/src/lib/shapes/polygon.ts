@@ -1,11 +1,11 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
 export class Polygon extends WPathObject {
-    points: Point[];
+    points: Vector2[];
 
-    constructor(x = 0, y = 0, points: Point[] = []) {
+    constructor(x = 0, y = 0, points: Vector2[] = []) {
         super(x, y);
 
         this.points = points;

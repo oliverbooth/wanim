@@ -1,10 +1,10 @@
 import clone from "clone";
 import svgPathParser from "svg-path-parser";
 
-import { Point, lerpPoints } from "./geometry/point.js";
+import { Vector2, lerpVector } from "./geometry/point.js";
 import { Quadruple } from "./types.js";
 
-export type CubicBezierPoints = Quadruple<Point>;
+export type CubicBezierPoints = Quadruple<Vector2>;
 
 /**
  * Represents a dynamic SVG path implementation focused on dynamic path resolution.
@@ -140,7 +140,7 @@ export class WPath {
 
         const points: CubicBezierPoints[] = [];
 
-        let cursor: Point = [head.x, head.y];
+        let cursor: Vector2 = [head.x, head.y];
         while (def.length > 0) {
             const inst = def.shift()!;
             switch (inst.code) {
@@ -187,7 +187,7 @@ export class WPath {
         return new WPath(points);
     }
 
-    static fromPoints(points: Point[]): WPath {
+    static fromPoints(points: Vector2[]): WPath {
         if (points.length < 2) {
             return new WPath();
         }
@@ -222,7 +222,7 @@ export class WPathSegment {
      */
     interpolate(other: WPathSegment, t: number): WPathSegment {
         return new WPathSegment(
-            this.points.map((point, i) => lerpPoints(point, other.points[i], t)) as CubicBezierPoints,
+            this.points.map((point, i) => lerpVector(point, other.points[i], t)) as CubicBezierPoints,
         );
     }
 
@@ -234,14 +234,14 @@ export class WPathSegment {
     split(t = 0.5): [WPathSegment, WPathSegment] {
         const [p0, p1, p2, p3] = this.points;
 
-        const p01 = lerpPoints(p0, p1, t);
-        const p12 = lerpPoints(p1, p2, t);
-        const p23 = lerpPoints(p2, p3, t);
+        const p01 = lerpVector(p0, p1, t);
+        const p12 = lerpVector(p1, p2, t);
+        const p23 = lerpVector(p2, p3, t);
 
-        const p012 = lerpPoints(p01, p12, t);
-        const p123 = lerpPoints(p12, p23, t);
+        const p012 = lerpVector(p01, p12, t);
+        const p123 = lerpVector(p12, p23, t);
 
-        const p0123 = lerpPoints(p012, p123, t);
+        const p0123 = lerpVector(p012, p123, t);
 
         return [new WPathSegment([p0, p01, p012, p0123]), new WPathSegment([p0123, p123, p23, p3])];
     }
@@ -250,7 +250,7 @@ export class WPathSegment {
 /**
  * Calculates the derivative of the specified cubic bezier at the specified value.
  */
-function bezierDerivative(curve: CubicBezierPoints, t: number): Point {
+function bezierDerivative(curve: CubicBezierPoints, t: number): Vector2 {
     const [p0, p1, p2, p3] = curve;
 
     const ax = -3 * p0[0] + 9 * p1[0] - 9 * p2[0] + 3 * p3[0];

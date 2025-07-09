@@ -1,7 +1,7 @@
 import Color, { ColorInstance, ColorLike } from "color";
 
 import { Anchor, anchorToPoint } from "./geometry/anchors.js";
-import { Point } from "./geometry/point.js";
+import { Vector2 } from "./geometry/point.js";
 import { WObjectAnimator, makeWObjectAnimator } from "./tweens/wobjectanimator.js";
 
 /**
@@ -23,9 +23,165 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
 
     private _fill: ColorInstance = Color("transparent");
     private _stroke: ColorInstance = Color("transparent");
-    private _strokeWidth: number = 1;
+    private _strokeWidth: number = 0.1;
 
     private _visible = false;
+
+    public x(): number;
+    public x(value: number): this;
+    public x(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._x = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return this._x;
+        }
+    }
+
+    public y(): number;
+    public y(value: number): this;
+    public y(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._y = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return this._y;
+        }
+    }
+
+    public position(): Vector2;
+    public position(value: Vector2): this;
+    public position(value?: Vector2): Vector2 | this {
+        if (typeof value !== "undefined") {
+            [this._x, this._y] = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return [this._x, this._y];
+        }
+    }
+
+    public fill(): ColorInstance;
+    public fill(color: ColorLike): this;
+    public fill(color?: ColorLike): ColorInstance | this {
+        if (typeof color !== "undefined") {
+            this._fill = Color(color);
+            this.updateFill();
+            return this;
+        } else {
+            return this._fill;
+        }
+    }
+
+    public fillOpacity(): number;
+    public fillOpacity(value: number): this;
+    public fillOpacity(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._fill = this._fill.alpha(value);
+            this.updateFill();
+            return this;
+        } else {
+            return this._fill.alpha();
+        }
+    }
+
+    public stroke(): ColorInstance;
+    public stroke(color: ColorLike): this;
+    public stroke(color?: ColorLike): ColorInstance | this {
+        if (typeof color !== "undefined") {
+            this._stroke = Color(color);
+            this.updateStroke();
+            return this;
+        } else {
+            return this._stroke;
+        }
+    }
+
+    public strokeOpacity(): number;
+    public strokeOpacity(value: number): this;
+    public strokeOpacity(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._stroke = this._stroke.alpha(value);
+            this.updateStroke();
+            return this;
+        } else {
+            return this._stroke.alpha();
+        }
+    }
+
+    public strokeWidth(): number;
+    public strokeWidth(value: number): this;
+    public strokeWidth(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._strokeWidth = value;
+            this.updateStroke();
+            return this;
+        } else {
+            return this._strokeWidth;
+        }
+    }
+
+    public scaleX(): number;
+    public scaleX(value: number): this;
+    public scaleX(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._scaleX = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return this._scaleX;
+        }
+    }
+
+    public scaleY(): number;
+    public scaleY(value: number): this;
+    public scaleY(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._scaleY = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return this._scaleY;
+        }
+    }
+
+    public scale(): Vector2;
+    public scale(value: Vector2): this;
+    public scale(value?: Vector2): Vector2 | this {
+        if (typeof value !== "undefined") {
+            [this._scaleX, this._scaleY] = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return [this._scaleX, this._scaleY];
+        }
+    }
+
+    public rotate(): number;
+    public rotate(value: number): this;
+    public rotate(value?: number): number | this {
+        if (typeof value !== "undefined") {
+            this._rotate = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return this._rotate;
+        }
+    }
+
+    public anchor(): Anchor;
+    public anchor(value: Anchor): this;
+    public anchor(value?: Anchor): Anchor | this {
+        if (typeof value !== "undefined") {
+            this._anchor = value;
+            this.updateTransform();
+            return this;
+        } else {
+            return this._anchor;
+        }
+    }
 
     public get visible() {
         return this._visible;
@@ -35,73 +191,7 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
         this.element.setAttribute("visibility", v ? "visible" : "hidden");
     }
 
-    public get x(): number {
-        return this._x;
-    }
-    public set x(x: number) {
-        this._x = x;
-        this.updateTransform();
-    }
-
-    public get y(): number {
-        return this._y;
-    }
-    public set y(y: number) {
-        this._y = y;
-        this.updateTransform();
-    }
-
-    public set position(position: Point) {
-        this._x = position[0];
-        this._y = position[1];
-        this.updateTransform();
-    }
-    public get position(): Point {
-        return [this._x, this._y];
-    }
-
-    public get scaleX(): number {
-        return this._scaleX;
-    }
-    public set scaleX(scaleX: number) {
-        this._scaleX = scaleX;
-        this.updateTransform();
-    }
-
-    public get scaleY(): number {
-        return this._scaleY;
-    }
-    public set scaleY(scaleY: number) {
-        this._scaleY = scaleY;
-        this.updateTransform();
-    }
-
-    public get scale(): Point {
-        return [this._scaleX, this._scaleY];
-    }
-    public set scale(scale: Point) {
-        this._scaleX = scale[0];
-        this._scaleY = scale[1];
-        this.updateTransform();
-    }
-
-    public get rotate(): number {
-        return this._rotate;
-    }
-    public set rotate(rotate: number) {
-        this._rotate = rotate;
-        this.updateTransform();
-    }
-
-    public get anchor(): Anchor {
-        return this._anchor;
-    }
-    public set anchor(anchor: Anchor) {
-        this._anchor = anchor;
-        this.updateTransform();
-    }
-
-    public get size(): Point {
+    public get size(): Vector2 {
         return [0, 0]; // This should be overridden by subclasses to return the actual size of the object.
     }
 
@@ -122,45 +212,6 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
         this.visible = true;
     }
 
-    get fill(): ColorInstance {
-        return this._fill;
-    }
-    get fillOpacity() {
-        return this._fill.alpha();
-    }
-
-    set fill(colorLike: ColorLike) {
-        this._fill = Color(colorLike);
-        this.updateFill();
-    }
-    set fillOpacity(v: number) {
-        this._fill.alpha(v);
-        this.updateFill();
-    }
-
-    get stroke(): ColorInstance {
-        return this._stroke;
-    }
-    get strokeWidth() {
-        return this._strokeWidth;
-    }
-    get strokeOpacity() {
-        return this._stroke.alpha();
-    }
-
-    set stroke(colorLike: ColorLike) {
-        this._stroke = Color(colorLike);
-        this.updateStroke();
-    }
-    set strokeWidth(w: number) {
-        this._strokeWidth = w;
-        this.updateStroke();
-    }
-    set strokeOpacity(v: number) {
-        this._stroke.alpha(v);
-        this.updateStroke();
-    }
-
     updateTransform() {
         const anchorPoint = anchorToPoint(this._anchor);
         const size = this.size;
@@ -178,13 +229,13 @@ export abstract class WObject<T extends SVGElement = SVGElement> {
     }
 
     updateStroke() {
-        this.element.setAttribute("stroke", this.stroke.hex());
-        this.element.setAttribute("stroke-opacity", this.strokeOpacity.toString());
-        this.element.setAttribute("stroke-width", this.strokeWidth.toString());
+        this.element.setAttribute("stroke", this.stroke().hex());
+        this.element.setAttribute("stroke-opacity", this.strokeOpacity().toString());
+        this.element.setAttribute("stroke-width", this.strokeWidth().toString());
     }
 
     updateFill() {
-        this.element.setAttribute("fill", this.fill.hex());
-        this.element.setAttribute("fill-opacity", this.fillOpacity.toString());
+        this.element.setAttribute("fill", this.fill().hex());
+        this.element.setAttribute("fill-opacity", this.fillOpacity().toString());
     }
 }

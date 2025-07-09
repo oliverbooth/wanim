@@ -594,6 +594,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.26.10":
+  version: 7.27.6
+  resolution: "@babel/runtime@npm:7.27.6"
+  checksum: 10c0/89726be83f356f511dcdb74d3ea4d873a5f0cf0017d4530cb53aa27380c01ca102d573eff8b8b77815e624b1f8c24e7f0311834ad4fb632c90a770fda00bd4c8
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.26.9, @babel/template@npm:^7.27.0, @babel/template@npm:^7.3.3":
   version: 7.27.0
   resolution: "@babel/template@npm:7.27.0"
@@ -3545,6 +3552,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"complex.js@npm:^2.2.5":
+  version: 2.4.2
+  resolution: "complex.js@npm:2.4.2"
+  checksum: 10c0/c78cca0a3c08fa48845e2703b9772bdd80d44e56728382d43879183cb23391da6e8b6326ceec23c685abfd529b61d34842ba1784d7fa3783b194fbc6d0850d7c
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -3649,6 +3663,13 @@ __metadata:
     supports-color:
       optional: true
   checksum: 10c0/db94f1a182bf886f57b4755f85b3a74c39b5114b9377b7ab375dc2cfa3454f09490cc6c30f829df3fc8042bc8b8995f6567ce5cd96f3bc3688bd24027197d9de
+  languageName: node
+  linkType: hard
+
+"decimal.js@npm:^10.4.3":
+  version: 10.6.0
+  resolution: "decimal.js@npm:10.6.0"
+  checksum: 10c0/07d69fbcc54167a340d2d97de95f546f9ff1f69d2b45a02fd7a5292412df3cd9eb7e23065e532a318f5474a2e1bccf8392fdf0443ef467f97f3bf8cb0477e5aa
   languageName: node
   linkType: hard
 
@@ -4068,6 +4089,13 @@ __metadata:
   version: 3.2.0
   resolution: "escalade@npm:3.2.0"
   checksum: 10c0/ced4dd3a78e15897ed3be74e635110bbf3b08877b0a41be50dcb325ee0e0b5f65fc2d50e9845194d7c4633f327e2e1c6cce00a71b617c5673df0374201d67f65
+  languageName: node
+  linkType: hard
+
+"escape-latex@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "escape-latex@npm:1.2.0"
+  checksum: 10c0/b77ea1594a38625295793a61105222c283c1792d1b2511bbfd6338cf02cc427dcabce7e7c1e22ec2f5c40baf3eaf2eeaf229a62dbbb74c6e69bb4a4209f2544f
   languageName: node
   linkType: hard
 
@@ -4567,6 +4595,13 @@ __metadata:
   version: 4.3.7
   resolution: "fraction.js@npm:4.3.7"
   checksum: 10c0/df291391beea9ab4c263487ffd9d17fed162dbb736982dee1379b2a8cc94e4e24e46ed508c6d278aded9080ba51872f1bc5f3a5fd8d7c74e5f105b508ac28711
+  languageName: node
+  linkType: hard
+
+"fraction.js@npm:^5.2.1":
+  version: 5.2.2
+  resolution: "fraction.js@npm:5.2.2"
+  checksum: 10c0/708f92c929c1147b91dac6820627cd84a89fcbf7a37f4c2cee6c1b6729d735ecd2ffc9aea343e404ac1e611d24387491b516a0a63ba61c158f424bfa9154883e
   languageName: node
   linkType: hard
 
@@ -6365,6 +6400,25 @@ __metadata:
   version: 3.0.4
   resolution: "markdown-table@npm:3.0.4"
   checksum: 10c0/1257b31827629a54c24a5030a3dac952256c559174c95ce3ef89bebd6bff0cb1444b1fd667b1a1bb53307f83278111505b3e26f0c4e7b731e0060d435d2d930b
+  languageName: node
+  linkType: hard
+
+"mathjs@npm:^14.5.3":
+  version: 14.5.3
+  resolution: "mathjs@npm:14.5.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.26.10"
+    complex.js: "npm:^2.2.5"
+    decimal.js: "npm:^10.4.3"
+    escape-latex: "npm:^1.2.0"
+    fraction.js: "npm:^5.2.1"
+    javascript-natural-sort: "npm:^0.7.1"
+    seedrandom: "npm:^3.0.5"
+    tiny-emitter: "npm:^2.1.0"
+    typed-function: "npm:^4.2.1"
+  bin:
+    mathjs: bin/cli.js
+  checksum: 10c0/02cdb13db7b7ecbbad93f297c3108e80ae6516593b9aecfc3ffb02c13a7e39fc7bd1f8a79cd68fe74dadc22cd6eac81769be1bc7341abde5f099dfbbd2ea3582
   languageName: node
   linkType: hard
 
@@ -8594,6 +8648,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"seedrandom@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "seedrandom@npm:3.0.5"
+  checksum: 10c0/929752ac098ff4990b3f8e0ac39136534916e72879d6eb625230141d20db26e2f44c4d03d153d457682e8cbaab0fb7d58a1e7267a157cf23fd8cf34e25044e88
+  languageName: node
+  linkType: hard
+
 "semver@npm:^6.3.0, semver@npm:^6.3.1":
   version: 6.3.1
   resolution: "semver@npm:6.3.1"
@@ -9213,6 +9274,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-emitter@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "tiny-emitter@npm:2.1.0"
+  checksum: 10c0/459c0bd6e636e80909898220eb390e1cba2b15c430b7b06cec6ac29d87acd29ef618b9b32532283af749f5d37af3534d0e3bde29fdf6bcefbf122784333c953d
+  languageName: node
+  linkType: hard
+
 "tinyexec@npm:^0.3.2":
   version: 0.3.2
   resolution: "tinyexec@npm:0.3.2"
@@ -9402,6 +9470,13 @@ __metadata:
   version: 4.39.1
   resolution: "type-fest@npm:4.39.1"
   checksum: 10c0/f5bf302eb2e2f70658be1757aa578f4a09da3f65699b0b12b7ae5502ccea76e5124521a6e6b69540f442c3dc924c394202a2ab58718d0582725c7ac23c072594
+  languageName: node
+  linkType: hard
+
+"typed-function@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "typed-function@npm:4.2.1"
+  checksum: 10c0/0b4e9a359e456f7df50f3d7cc53e2408d23a516f27b50c2c0654f388110ecf407c0595b1bf2296d3d8667fae6aae311ec2af90c602385777d12fe724bae99156
   languageName: node
   linkType: hard
 
@@ -9885,6 +9960,7 @@ __metadata:
   dependencies:
     "@types/svg-path-parser": "npm:^1.1.6"
     color: "npm:^5.0.0"
+    mathjs: "npm:^14.5.3"
     svg-path-parser: "npm:^1.1.0"
     tslib: "npm:^2.3.0"
     typescript: "npm:^5.8.3"

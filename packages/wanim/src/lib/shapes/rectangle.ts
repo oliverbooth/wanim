@@ -1,4 +1,4 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
@@ -27,7 +27,7 @@ export class Rectangle extends WPathObject {
         this.renderPath();
     }
 
-    override get size(): Point {
+    override get size(): Vector2 {
         return [this.w, this.h];
     }
 }

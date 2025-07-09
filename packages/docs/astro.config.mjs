@@ -26,11 +26,15 @@ export default defineConfig({
             sidebar: [
                 {
                     label: "Tutorials",
-                    items: [{ label: "Quickstart", slug: "tutorials/quickstart" }],
+                    autogenerate: { directory: "tutorials" },
                 },
                 {
                     label: "Reference",
                     autogenerate: { directory: "reference" },
+                },
+                {
+                    link: "/examples",
+                    label: "Examples",
                 },
                 typeDocSidebarGroup,
             ],

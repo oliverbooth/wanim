@@ -1,4 +1,4 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
@@ -20,7 +20,7 @@ export class Star extends WPathObject {
 function generateStar(cx: number, cy: number, n: number, r: number): WPath {
     const angleStep = (2 * Math.PI) / (2 * n);
 
-    const points: Point[] = [];
+    const points: Vector2[] = [];
 
     for (let i = 0; i < 2 * n; i++) {
         const isInner = i % 2 === 1;

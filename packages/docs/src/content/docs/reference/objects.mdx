@@ -4,9 +4,6 @@ title: Objects
 
 import { Aside, Code, TabItem, Tabs } from "@astrojs/starlight/components";
 
-import { GroupsExample } from "../../../examples/groups.jsx";
-import { LaTeXExample } from "../../../examples/latex-text.jsx";
-
 Any rendered vector element in the scene is a `WObject`. These objects serve as the building blocks for creating and
 manipulating visual elements in the scene. They can be transformed, styled, and animated to suit various needs.
 
@@ -31,12 +28,14 @@ this.add(group);
 
 for (let i = 0; i < 3; i++) {
     const star = new Star(-3 + i * 3, 0);
-    star.fill = "yellow";
+    star.fill("yellow");
     star.show();
     stars.push(star);
     group.add(star);
 }
 ```
+
+import { GroupsExample } from "@/examples/docs";
 
 <GroupsExample client:load />
 
@@ -74,7 +73,7 @@ There are several pre-defined shapes that you can use.
 | Star          | Tips, Radius     |
 | Dot           |                  |
 
-import { ShapesExample } from "../../../examples/shapes.jsx";
+import { ShapesExample } from "@/examples/docs";
 
 <ShapesExample client:load />
 
@@ -98,5 +97,7 @@ await this.play(Create(tex));
     When LaTeX code is first rendered, the MathJax API must be loaded. Therefore it's best to await the `rendered`
     promise before using the text in animations.
 </Aside>
+
+import { LaTeXExample } from "@/examples/docs";
 
 <LaTeXExample client:load />

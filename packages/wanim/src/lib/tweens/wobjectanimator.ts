@@ -1,13 +1,20 @@
 import Color, { ColorLike } from "color";
 
+import { ReturnTypeWithArgs } from "../types.js";
 import { WObject } from "../wobject.js";
 import { WTweener, tweener } from "./wtweener.js";
 
+type WObjectFunctionProperties = {
+    [K in keyof WObject]: WObject[K] extends (...args: any[]) => any ? K : never;
+}[keyof WObject];
+type WObjectFunctionPropertyType<K extends WObjectFunctionProperties> = ReturnTypeWithArgs<WObject[K], []>;
+
 export type WObjectAnimator = ReturnType<typeof makeWObjectAnimator>;
-export type TweenerFactory<K extends keyof WObject, S = WObject[K], V = WObject[K]> = (
-    target: S,
-    duration: number,
-) => WTweener<WObject[K]>;
+export type TweenerFactory<
+    K extends WObjectFunctionProperties,
+    S = WObjectFunctionPropertyType<K>,
+    V = WObjectFunctionPropertyType<K>,
+> = (target: S, duration: number) => WTweener<V>;
 
 export function makeWObjectAnimator(wobject: WObject): {
     x: TweenerFactory<"x">;
@@ -37,19 +44,22 @@ export function makeWObjectAnimator(wobject: WObject): {
     };
 }
 
-function makePropertyTweener<K extends keyof WObject>(prop: K, wobject: WObject): TweenerFactory<K, WObject[K]> {
+function makePropertyTweener<K extends WObjectFunctionProperties, V>(
+    prop: K,
+    wobject: WObject,
+): TweenerFactory<K, V, V> {
     return makePropertyTweenerWithConversion(prop, wobject, (x) => x);
 }
 
-function makePropertyTweenerWithConversion<K extends keyof WObject, S = WObject[K]>(
+function makePropertyTweenerWithConversion<K extends WObjectFunctionProperties, S, V = WObjectFunctionPropertyType<K>>(
     prop: K,
     wobject: WObject,
-    convert: (s: S) => WObject[K],
-): TweenerFactory<K, S, WObject[K]> {
+    convert: (s: S) => V,
+): TweenerFactory<K, S, V> {
     return (target, duration) =>
-        tweener<WObject[K]>(
-            () => wobject[prop],
-            (value) => (wobject[prop] = value),
+        tweener<V>(
+            () => (wobject[prop] as unknown as () => V)(),
+            (value) => (wobject[prop] as unknown as (v: V) => never)(value),
             convert(target),
             duration,
         );

@@ -11,7 +11,7 @@ tweens, which are sequences of changes over time that can be applied to various 
 
 ```ts {5-6}
 const circle = new Circle(-2, 0);
-circle.fill = "yellow";
+circle.fill("yellow");
 circle.show();
 
 // animate the x-coordinate to 4 over 1 second with the specified ease
@@ -26,7 +26,7 @@ A tween is used to animate properties over a specified duration. You can create 
 const square = this.add(new Square(0, 0, 2));
 await this.play(
     tween()
-        .onUpdate((t) => (square.x = lerp(0, 2, t)))
+        .onUpdate((t) => square.x(lerp(0, 2, t)))
         .ease("inOutSine"),
 );
 ```
@@ -52,8 +52,8 @@ Multiple tweens can be composed together using sequences. A sequence allows you 
 
 ```ts
 const square = this.add(new Square(-2, 0, 2));
-square.fill = "red";
-square.scale = [0, 0];
+square.fill("red");
+square.scale([0, 0]);
 square.show();
 
 await this.play(
@@ -67,7 +67,7 @@ await this.play(
 );
 ```
 
-import { SequencesExample } from "../../../examples/sequences.jsx";
+import { SequencesExample } from "@/examples/docs";
 
 <SequencesExample client:load />
 

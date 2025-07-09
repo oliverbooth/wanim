@@ -1,7 +1,8 @@
 import { Circle, Dot, Line, RegularNgon, Square, Star, WanimScene } from "wanim";
 
-import { WanimSceneExample } from "../components/wanim-scene-example";
-import { extractExampleSource } from "../lib/extract-example-source";
+import { WanimSceneExample } from "@/components/wanim-scene-example";
+import { extractExampleSource } from "@/lib/extract-example-source";
+
 import code from "./shapes?raw";
 
 class Shapes extends WanimScene {
@@ -19,8 +20,8 @@ class Shapes extends WanimScene {
         for (let i = 0; i < shapes.length; i++) {
             this.add(shapes[i]);
 
+            shapes[i].fill(colors[i]);
             shapes[i].show();
-            shapes[i].fill = colors[i];
         }
     }
 }

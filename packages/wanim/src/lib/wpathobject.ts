@@ -15,8 +15,6 @@ export class WPathObject extends WObject<SVGPathElement> {
 
         this.path = new WPath();
 
-        this.element.setAttribute("stroke", "white");
-        this.element.setAttribute("stroke-width", "0.08");
         this.element.setAttribute("stroke-linecap", "round");
         this.element.setAttribute("fill-rule", "evenodd");
 

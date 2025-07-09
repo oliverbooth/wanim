@@ -1,4 +1,4 @@
-import { Point } from "../geometry/point.js";
+import { Vector2 } from "../geometry/point.js";
 import { WPath } from "../wpath.js";
 import { WPathObject } from "../wpathobject.js";
 
@@ -26,7 +26,7 @@ export class Square extends WPathObject {
         this.updateTransform();
     }
 
-    override get size(): Point {
+    override get size(): Vector2 {
         return [this.s, this.s];
     }
 }
