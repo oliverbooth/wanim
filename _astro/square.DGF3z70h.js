@@ -1,1 +1,0 @@
-import{b as e,c as a}from"./wanim-scene-example.BF4PekrL.js";class o extends e{s;constructor(s=0,r=0,t=1){super(s,r),this.s=t,this.path=a.fromPoints([[0,0],[t,0],[t,t],[0,t]]),this.renderPath(),this.updateTransform()}get size(){return[this.s,this.s]}}export{o as S};
