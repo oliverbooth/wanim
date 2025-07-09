@@ -1,4 +1,4 @@
-import { Anchor, Circle, Create, RegularNgon, Square, WGroup, WTex, WanimScene } from "wanim";
+import { Circle, RegularNgon, Square, WGroup, WTex, WanimScene } from "wanim";
 
 import { WanimSceneExample } from "@/components/wanim-scene-example";
 import { extractExampleSource } from "@/lib/extract-example-source";
@@ -12,7 +12,6 @@ class WanimLogo extends WanimScene {
         const w = new WTex("\\mathbb{W}", { fontScale: 2.5 });
         await w.rendered;
         w.position([-2, -1]);
-        w.anchor(Anchor.Center);
         w.fill("#343434");
         w.stroke("transparent");
         w.show();
@@ -23,12 +22,10 @@ class WanimLogo extends WanimScene {
 
         const square = new Square(0, -1, 2);
         square.fill("#525893");
-
         square.show();
 
         const triangle = new RegularNgon(1, 0, 3, 1);
         triangle.fill("#e07a5f");
-
         triangle.show();
 
         const logo = this.add(new WGroup());
@@ -37,5 +34,13 @@ class WanimLogo extends WanimScene {
 }
 
 export function WanimLogoExample() {
-    return <WanimSceneExample scene={WanimLogo} source={extractExampleSource(code)} />;
+    return (
+        <WanimSceneExample
+            scene={WanimLogo}
+            id="wanimlogo"
+            title="WanimLogo"
+            code={extractExampleSource(code)}
+            tags={["TeX", "Shapes"]}
+        />
+    );
 }

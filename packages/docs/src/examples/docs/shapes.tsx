@@ -27,5 +27,5 @@ class Shapes extends WanimScene {
 }
 
 export function ShapesExample() {
-    return <WanimSceneExample scene={Shapes} source={extractExampleSource(code)} />;
+    return <WanimSceneExample scene={Shapes} code={extractExampleSource(code)} />;
 }
